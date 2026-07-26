@@ -1,0 +1,20 @@
+#!/bin/bash
+
+DIR="$HOME/Wallpapers/"
+cd "$DIR" || { exit 1; }
+shopt -s nullglob nocaseglob
+files=( *.{jpg,jpeg,png,webp,gif,bmp,tiff} )
+(( ${#files[@]} == 0 )) && { exit 1; }
+IFS=$'\n' sorted=($(printf '%s\n' "${files[@]}" | LC_ALL=C sort))
+i=1
+for f in "${sorted[@]}"; do
+    ext="${f##*.}"
+    ext="${ext,,}"
+    newname=$(printf "%03d.%s" $i "$ext")
+    mv --backup=numbered -v "$f" "$newname" 2>/dev/null
+    sleep 0.007
+
+    ((i++))
+done
+rm -rf "$HOME"/.cache/thumbnails/
+

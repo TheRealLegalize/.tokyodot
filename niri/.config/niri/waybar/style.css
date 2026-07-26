@@ -1,0 +1,167 @@
+@import "./Colors/Oxocarbon.css";
+
+* { 
+  border: none;
+  font-family: "CaskaydiaCove Nerd Font";
+  font-weight: bold;
+  font-style: italic;
+  font-size: 12.5pt;
+  min-height: 0;
+  transition: none;
+}
+
+window#waybar {
+  background: @base;
+  border-radius: 0;
+  color: @text;
+}
+
+tooltip {
+  border: 1px solid @surface1;
+  background: @surface0;
+}
+
+
+/* Left Modules */
+
+#workspaces {
+  background: @base;
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  border-radius: 20pt;
+  padding-right: 7pt;
+  padding-left: 2pt;
+}
+
+#workspaces button {
+  color: @text;
+  min-width: 0px;
+}
+
+#workspaces button.active {
+  color: @maroon;
+  border-radius: 0;
+  /* border-bottom: 2pt solid @maroon */
+}
+
+
+#custom-player {
+  background: @base;
+  border-radius: 20pt;
+  color: @blue;
+  padding-left: 10pt;
+  padding-right: 10pt;
+  margin-left: 7pt;
+}
+
+#custom-prev, #custom-next {
+  background: @base;
+  color: @sky;
+  /* border: 1px solid rgba(255, 255, 255, 0.0); */
+  padding-right: 10pt;
+  padding-left: 10pt;
+}
+
+#custom-prev {
+  border-right: none;
+  margin-left: 5pt;
+  margin-right: -5pt;
+  border-radius: 20pt 0pt 0pt 20pt;
+}
+
+#custom-next{
+  border-left: none;
+  border-radius: 0pt 20pt 20pt 0pt;
+}
+
+/* Center Modules */
+
+#cpu {
+  background: @base;
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  border-right: none;
+  border-radius: 20pt 0pt 0pt 20pt;
+  padding-right: 5pt;
+  padding-left: 7pt;
+  color: @red;
+}
+
+#clock {
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  border-right: none;
+  border-left: none;
+  background: @base;
+  padding-right: 5pt;
+  padding-left: 5pt;
+  color: @sapphire;
+}
+
+#memory {
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  border-right: none;
+  border-left: none;
+  border-radius: 0pt 20pt 20pt 0pt;
+  background: @base;
+  padding-left: 5pt;
+  padding-right: 7pt;
+  color: @green;
+}
+
+/* Right Modules */
+
+#custom-weather {
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  border-right: none;
+  border-radius: 20pt 0pt 0pt 20pt;
+  background: @base;
+  color: @mauve;
+  padding-right: 5pt;
+}
+
+#network {
+  padding-left: 8pt;
+  background: @base;
+  color: @blue;
+}
+
+#backlight {
+  background: @base;
+  color: @yellow;
+}
+
+#pulseaudio {
+  background: @base;
+  color: @maroon;
+}
+
+#battery {
+  background: @base;
+  color: @sky;
+}
+
+#language {
+  background: @base;
+  color: @green;
+}
+
+#network, #backlight, #pulseaudio, #battery, #language, #tray, #custom-player, #workspaces {
+  /* border: 1px solid rgba(255, 255, 255, 0.0); */
+  border-right: none;
+  border-left: none;
+  padding-left: 5pt;
+  padding-right: 5pt;
+}
+
+#tray {
+  background: @base;
+}
+
+#custom-powermenu {
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  border-left: none;
+  border-radius: 0pt 20pt 20pt 0pt;
+  background: @base;
+  padding-left: 7pt;
+  padding-right: 10pt;
+  color: @red;
+}
+

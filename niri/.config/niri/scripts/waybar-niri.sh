@@ -1,0 +1,4 @@
+#!/bin/bash
+exec /usr/bin/waybar \
+    -c "$HOME/.config/niri/waybar/config.jsonc" \
+    -s "$HOME/.config/niri/waybar/style.css"

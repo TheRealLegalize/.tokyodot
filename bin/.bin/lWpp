@@ -1,0 +1,7 @@
+#!/bin/sh 
+
+wallpapers=071.jpg
+wpp=$HOME/Wallpapers/$wallpapers
+
+# sleep 0.3
+awww img "$wpp" --transition-type none

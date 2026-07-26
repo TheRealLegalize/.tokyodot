@@ -1,0 +1,6 @@
+#!/bin/bash
+
+file="$1"
+name="${file%.*}"
+[[ -z "$file" || ! -f "$file" ]] && exit 1
+ffmpeg -i "$file" -v error -frames:v 1 "${name}.png" && rm -f "$file"

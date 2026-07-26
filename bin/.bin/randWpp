@@ -1,0 +1,56 @@
+#!/bin/bash
+
+WALL_DIR="$HOME/Wallpapers"
+HISTORY_FILE="$HOME/.cache/wallpaper_history"
+SCRIPT_TO_UPDATE="$HOME/bin/lWpp"
+LINE_TO_REPLACE=3
+
+mkdir -p "$(dirname "$HISTORY_FILE")"
+
+wall_count=$(eza -1 "$WALL_DIR" 2>/dev/null | wc -l)
+if [ "$wall_count" -eq 0 ]; then
+    echo "В директории $WALL_DIR нет обоев." >&2
+    exit 1
+fi
+
+HISTORY_SIZE=$(( wall_count / 2 ))
+if [ "$HISTORY_SIZE" -gt 20 ]; then
+    HISTORY_SIZE=20
+elif [ "$HISTORY_SIZE" -lt 1 ]; then
+    HISTORY_SIZE=1
+fi
+
+choose_wallpaper() {
+    all_walls=$(eza -1 "$WALL_DIR")
+    recent_walls=""
+    if [[ -f "$HISTORY_FILE" ]]; then
+        recent_walls=$(cat "$HISTORY_FILE")
+    fi
+    available_walls=$(comm -23 <(echo "$all_walls" | sort) <(echo "$recent_walls" | sort))
+    if [[ -z "$available_walls" ]]; then
+        " " > "$HISTORY_FILE"
+        available_walls="$all_walls"
+    fi
+    echo "$available_walls" | shuf -n 1
+}
+
+wallpaper_file=$(choose_wallpaper)
+if [[ -z "$wallpaper_file" ]]; then
+    wallpaper_file=$(eza -1 "$WALL_DIR" | shuf -n 1)
+fi
+if [[ -z "$wallpaper_file" ]]; then
+    exit 1
+fi
+
+wallpaper_path="$WALL_DIR/$wallpaper_file"
+{
+    if [[ -f "$HISTORY_FILE" ]]; then
+        grep -v -x -F -- "$wallpaper_file" "$HISTORY_FILE"
+    fi
+    echo "$wallpaper_file"
+} | tail -n "$HISTORY_SIZE" > "$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
+
+wpp="wallpapers=$wallpaper_path"
+awww img "$wallpaper_path" --transition-type grow --transition-duration 0.8
+
+sed -i "${LINE_TO_REPLACE}s/.*/$wpp/" "$SCRIPT_TO_UPDATE"

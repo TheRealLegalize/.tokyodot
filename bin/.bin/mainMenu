@@ -1,0 +1,13 @@
+#!/bin/sh 
+
+choice=$(printf " Package Manager\n Settings" | wofi --width=260 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
+
+case "$choice" in
+    " Package Manager")
+        sh "$HOME"/.bin/pkgMenu
+        ;;
+    " Settings")
+        sh "$HOME"/.bin/settingsMenu 
+        ;;
+    *)
+esac

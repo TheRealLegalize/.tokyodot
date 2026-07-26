@@ -1,0 +1,109 @@
+#!/usr/bin/bash
+
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM
+
+BARS=8
+FRAMERATE=60
+EQUILIZER=1
+
+while getopts 'b:f:m:eh' flag; do
+    case "${flag}" in
+        b) BARS="${OPTARG}" ;;
+        f) FRAMERATE="${OPTARG}" ;;
+        e) EQUILIZER=0 ;;
+        h) echo "Usage: caway [-b bars] [-f framerate] [-e]"; exit 0 ;;
+    esac
+done
+
+readonly BAR_CHARS=(" " "▂" "▃" "▄" "▅" "▆" "▇" "█")
+readonly EMPTY_JSON='{"text": "Nothing ", "alt": "Stopped", "class": "Stopped"}'
+
+clean_create_pipe() {
+    [ -p "$1" ] && rm -f "$1"
+    mkfifo "$1"
+}
+
+cava_waybar_pid="/tmp/cava_waybar_pid"
+cava_waybar_pipe="/tmp/cava_waybar.fifo"
+playerctl_waybar_pipe="/tmp/playerctl_waybar.fifo"
+
+clean_create_pipe "$cava_waybar_pipe"
+clean_create_pipe "$playerctl_waybar_pipe"
+
+cat <<EOF > /tmp/cava_waybar_config
+[general]
+mode = normal
+framerate = $FRAMERATE
+bars = $BARS
+[output]
+method = raw
+raw_target = $cava_waybar_pipe
+data_format = ascii
+ascii_max_range = 7
+EOF
+
+playerctl -a metadata --format '{"text": "{{title}}", "tooltip": "{{playerName}} : {{markup_escape(artist)}} - {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F > "$playerctl_waybar_pipe" &
+
+kill_cava_jobs() {
+    if [ -f "$cava_waybar_pid" ]; then
+        while read -r pid; do
+            kill -9 "$pid" 2>/dev/null
+            wait "$pid" 2>/dev/null
+        done < "$cava_waybar_pid"
+        rm -f "$cava_waybar_pid"
+    fi
+}
+
+# Демон для отслеживания закрытия плеера (раз в секунду проверяет, жив ли плеер)
+(
+    while true; do
+        sleep 1
+        if ! playerctl status >/dev/null 2>&1; then
+            echo "$EMPTY_JSON" > "$playerctl_waybar_pipe"
+        fi
+    done
+) &
+
+# Первичный вывод при старте, если ничего не запущено
+if ! playerctl status >/dev/null 2>&1; then
+    echo "$EMPTY_JSON"
+fi
+
+while read -r line; do
+    kill_cava_jobs
+
+    if ! echo "$line" | jq empty 2>/dev/null; then
+        continue
+    fi
+
+    # СРАЗУ выводим пришедшую инфу (название трека), чтобы избежать мигания/исчезновения
+    echo "$line" | jq --unbuffered --compact-output
+
+    STATUS=$(echo "$line" | jq -r '.class')
+
+    if [[ $EQUILIZER -eq 1 && "$STATUS" == "Playing" ]]; then
+        # Спим в фоне, чтобы не блокировать основной цикл чтения playerctl
+        (
+            sleep 1.5
+            [[ $(playerctl status 2>/dev/null) != "Playing" ]] && exit 0
+
+            cava -p /tmp/cava_waybar_config > "$cava_waybar_pipe" &
+            echo $! > "$cava_waybar_pid"
+
+            exec 3<"$cava_waybar_pipe"
+            while read -r -u 3 cmd2; do
+                bars_output=""
+                for (( i=0; i<${#cmd2}; i++ )); do
+                    val="${cmd2:$i:1}"
+                    if [[ "$val" =~ [0-7] ]]; then
+                        bars_output+="${BAR_CHARS[$val]}"
+                    fi
+                done
+
+                [ -z "$bars_output" ] && continue
+                echo "$line" | jq --arg a "$bars_output" '.text = $a' --unbuffered --compact-output
+            done
+        ) &
+        echo $! >> "$cava_waybar_pid"
+    fi
+done < "$playerctl_waybar_pipe"

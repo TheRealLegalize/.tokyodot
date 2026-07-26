@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>image-png</icon>
+	<name>To png</name>
+	<submenu>Image</submenu>
+	<unique-id>1758556978787238-1</unique-id>
+	<command>/home/user/.bin/toPng %f</command>
+	<description>Image to png</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>application-image-png</icon>
+	<name>Rename Wallpaper</name>
+	<submenu></submenu>
+	<unique-id>1764958302827391-1</unique-id>
+	<command>/home/user/.bin/rnmWpp</command>
+	<description>Renames wallpapers to 001, 002.</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>application-image-bmp</icon>
+	<name>Grayscale</name>
+	<submenu>Image</submenu>
+	<unique-id>1763136586744561-1</unique-id>
+	<command>magick %n -colorspace Gray ./gray-%n</command>
+	<description>Make image grayscaled</description>
+	<range>*</range>
+	<patterns>*.png;*.jpg</patterns>
+	<startup-notify/>
+	<image-files/>
+</action>
+<action>
+	<icon>folder-encrypted</icon>
+	<name>Open as root</name>
+	<submenu></submenu>
+	<unique-id>1755932512508825-1</unique-id>
+	<command>thunar admin://%f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1754824934761503-1</unique-id>
+	<command>kitty --directory=&quot;%f&quot; --title=&quot;floatterm&quot;</command>
+	<description>Opens terminal here suka</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>3depict</icon>
+	<name>Copy Path</name>
+	<submenu></submenu>
+	<unique-id>1759350969232680-1</unique-id>
+	<command>echo %f | wl-copy</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>clipboard</icon>
+	<name>Copy file content</name>
+	<submenu></submenu>
+	<unique-id>1769345208957528-1</unique-id>
+	<command>cat %n | wl-copy</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<text-files/>
+</action>
+</actions>

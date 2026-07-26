@@ -1,0 +1,20 @@
+#!/bin/bash
+
+CHOICE=$(printf "󰤄 Suspend\n Logout\n Reboot\n Poweroff" | wofi --dmenu --cache-file=/dev/null --hide-search --hide-scroll --width 220 --height 270 -p "Power Menu")
+
+case $CHOICE in
+  "󰤄 Suspend")
+    sleep 0.5s
+    hyprlock
+    sleep 0.5s
+    ;;
+  " Logout")
+    uwsm stop
+    ;;
+  " Reboot")
+    systemctl reboot
+    ;;
+  " Poweroff")
+    systemctl poweroff
+    ;;
+esac

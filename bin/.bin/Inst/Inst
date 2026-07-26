@@ -1,0 +1,149 @@
+#!/bin/bash
+
+PKGS=(
+  7zip 
+  ark 
+  ayugram-desktop-bin
+  ayugram-desktop-bin-debug
+  base
+  base-devel
+  bat
+  bluez
+  bluez-utils
+  brightnessctl
+  btrfs-progs
+  cava
+  chaotic-keyring
+  chaotic-mirrorlist
+  cpupower
+  discord
+  dnsmasq
+  dunst
+  efibootmgr
+  eva
+  eza
+  fastfetch
+  fd
+  ffmpegthumbnailer
+  firefox
+  fish
+  flatpak
+  fluffychat
+  fuse2
+  fzf
+  gamemode
+  gimp
+  git
+  grim
+  grub
+  gsimplecal
+  gum
+  gvfs
+  hyprland
+  hyprlock
+  hyprpicker
+  hyprpolkitagent
+  hyprsunset
+  imagemagick
+  inotify-tools
+  intel-media-driver
+  intel-media-sdk
+  intel-ucode
+  kitty
+  kvantum
+  kvantum-qt5
+  libpulse
+  librewolf
+  libva-intel-driver
+  libvirt
+  linux
+  linux-cachyos
+  linux-firmware
+  man-db
+  mpc
+  mpd
+  mpv
+  ncdu
+  neovim
+  networkmanager
+  noto-fonts-cjk
+  noto-fonts-emoji
+  npm
+  nwg-look
+  obs-studio
+  oh-my-posh-bin
+  paru
+  pavucontrol
+  pipewire
+  pipewire-alsa
+  pipewire-jack
+  pipewire-pulse
+  plymouth
+  portproton
+  protobuf
+  proton-vpn-gtk-app
+  pyinstaller
+  python
+  python-pyquery
+  python-pytelegrambotapi
+  python-pywal
+  python-twisted
+  qbittorrent
+  qemu-full
+  qt5-wayland
+  qt5ct
+  qt6-wayland
+  qt6ct
+  reflector
+  ripgrep
+  rofi
+  sof-firmware
+  stow
+  swayimg
+  awww
+  thunar
+  thunar-archive-plugin
+  thunar-volman
+  tmux 
+  tree-sitter-cli
+  ttf-jetbrains-mono-nerd
+  tumbler
+  unzip
+  virt-manager
+  waybar
+  wget
+  wireplumber
+  wl-clipboard
+  wlogout
+  xdg-desktop-portal-gtk
+  xdg-desktop-portal-hyprland
+  xdg-desktop-portal-wlr 
+  yay 
+  yazi 
+  yt-dlp 
+  zen-browser-bin 
+  zoxide 
+  zram-generator 
+  zsh
+)
+AUR=(
+  btop-git
+  cmatrix-git
+  elyprismlauncher-bin
+  pipes-rs
+)
+
+chaotic_install() {
+  sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+  sudo pacman-key --lsign-key 3056513887B78AEB
+  sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+  sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+  sudo tee -a /etc/pacman.conf << EOF
+
+  [chaotic-aur]
+  Include = /etc/pacman.d/chaotic-mirrorlist
+EOF
+  sudo pacman -Syu
+}
+
+chaotic_install

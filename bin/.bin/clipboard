@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+current_clip=$(wl-paste 2>/dev/null || echo "")
+
+selected=$(cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f2- | sed 's/^[[:space:]]*//'" --prompt='Clipboard')
+
+if [ -z "$selected" ]; then
+    if [ -n "$current_clip" ]; then
+        echo -n "$current_clip" | wl-copy
+    fi
+    exit 0
+fi
+
+echo "$selected" | xargs -r cliphist decode | wl-copy

@@ -1,0 +1,109 @@
+#!/bin/bash
+
+commands=("-c" "-e" "docker")
+NAME="${CFG_NAME}"
+
+helpMsg() {
+  cat << EOF
+Usage: $NAME {arg}
+
+Avialable command:
+  -e          Edit dots.
+  -c          Configure some system things.
+  -h          Show this text.
+EOF
+}
+
+editHelp() {
+  cat << EOF
+Usage: $NAME -e {opt}
+
+Avialable options:
+  hypr    Opens hyprland main config folder in neovim.
+  waybar  Opens waybar main config folder in neovim.
+  kitty   Opens kitty config in neovim.
+  nvim    Opens neovim main config folder in neovim.
+EOF
+}
+
+confHelp() {
+  cat << EOF
+Usage: $NAME -c {opt}
+
+Avialable options:
+  autologin   Can be true or false. Username must be provided as last argument.
+EOF
+}
+
+###############################################################
+
+
+case "$1:$2" in
+  "-e:")
+    editHelp
+    ;;
+  "-e:hypr")
+    nvim "$HOME/.config/hypr/"
+    ;;
+  "-e:waybar")
+    nvim "$HOME/.config/waybar/"
+    ;;
+  "-e:kitty")
+    nvim "$HOME/.config/kitty/kitty.conf"
+    ;;
+  "-e:nvim")
+    nvim "$HOME/.config/nvim/"
+    ;;
+  *)
+    echo "[ERROR] Wrong argument!"
+    ;;
+esac
+
+
+
+
+###############################################################
+
+
+
+
+
+if [[ -z "$1" || "$1" == "-h" ]]; then
+    helpMsg
+    exit 0
+fi
+
+is_valid=false
+for cmd in "${commands[@]}"; do
+    if [[ "$1" == "$cmd" ]]; then
+        is_valid=true
+        break
+    fi
+done
+
+if ! $is_valid; then
+    echo "[ERROR]: Command '$NAME $1' not found."
+    exit 1
+fi
+
+
+###############################################################
+#
+#
+# case "$1:$2" in
+#   "-e:")
+#     conf_help
+#     ;;
+#   "-e:hypr")
+#     nvim "$HOME/.config/hypr/"
+#     ;;
+#   "-e:waybar")
+#     nvim "$HOME/.config/waybar/"
+#     ;;
+#   "-e:kitty")
+#     nvim "$HOME/.config/kitty/kitty.conf"
+#     ;;
+#   "-e:nvim")
+#     nvim "$HOME/.config/nvim/"
+#     ;;
+# esac

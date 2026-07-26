@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Настройки
+LOW_LIMIT=15
+CRITICAL_LIMIT=10
+BATTERY="BAT1"
+
+while true; do
+    CAPACITY=$(cat /sys/class/power_supply/$BATTERY/capacity)
+    STATUS=$(cat /sys/class/power_supply/$BATTERY/status)
+
+    if [ "$STATUS" = "Discharging" ]; then
+        if [ "$CAPACITY" -le "$CRITICAL_LIMIT" ]; then
+            systemctl poweroff
+        
+        elif [ "$CAPACITY" -le "$LOW_LIMIT" ]; then
+            for i in {1..20}; do
+                notify-send -u critical "БАТАРЕЯ" "Малыш, батарея на 15%... Вставь свой кабель в мой порт поглубже и заполни меня энергией до самого верха."
+                sleep 2
+                
+                NEW_STATUS=$(cat /sys/class/power_supply/$BATTERY/status)
+                if [ "$NEW_STATUS" = "Charging" ]; then break; fi
+            done
+            sleep 300
+        fi
+    fi
+    sleep 60
+done

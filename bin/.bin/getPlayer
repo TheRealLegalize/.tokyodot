@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Получаем данные. Если плеер пуст, переменные будут пустыми.
+title=$(playerctl metadata title 2>/dev/null)
+artist=$(playerctl metadata artist 2>/dev/null)
+
+# Проверяем, есть ли данные, и выводим в формате Title - Artist
+if [ -n "$title" ] && [ -n "$artist" ]; then
+    echo "$title"
+elif [ -n "$title" ]; then
+    echo "$title"
+else
+    echo "Nothing Playing"
+fi

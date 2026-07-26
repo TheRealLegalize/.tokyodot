@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Проверка на root
+[[ $EUID -ne 0 ]] && echo "Run as root!" && exit 1
+
+SIZE=$1
+[[ -z "$SIZE" ]] && echo "Usage: $0 <size> (e.g. 4G, 8G)" && exit 1
+
+echo "Cleaning up swap..."
+swapoff -a
+zramctl --reset /dev/zram0 2>/dev/null
+
+echo "Setting up zram to $SIZE..."
+modprobe zram
+zramctl --find --size "$SIZE" --algorithm zstd
+
+echo "Activating swap..."
+mkswap /dev/zram0
+swapon /dev/zram0 -p 100
+
+echo "Done!"
+swapon --show

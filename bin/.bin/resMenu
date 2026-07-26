@@ -1,0 +1,18 @@
+#!/bin/bash
+
+FILE="$HOME/.config/hypr/hyprland.lua"
+LINE="22s"
+
+CHOICE=$(printf "2560x1440\n1920x1080\n1600x900\n" | wofi --dmenu --cache-file=/dev/null --hide-search --hide-scroll --width 220 --height 270 -p "Power Menu")
+
+case $CHOICE in
+  "2560x1440")
+    sed -i -E "$LINE/^([[:space:]]*).*/\1mode     = \"2560x1440@60\",/" $FILE
+    ;;
+  "1920x1080")
+    sed -i -E "$LINE/^([[:space:]]*).*/\1mode     = \"1920x1080@60\",/" $FILE
+    ;;
+  "1600x900")
+    sed -i -E "$LINE/^([[:space:]]*).*/\1mode     = \"1600x900@60\",/" $FILE
+    ;;
+esac

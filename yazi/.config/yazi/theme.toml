@@ -1,0 +1,101 @@
+[mgr]
+cwd = { fg = "#60bcf7" } # Teal (вместо старого 94e2d5)
+
+hovered         = { fg = "#161616", bg = "#76d191" } # Base -> Green
+preview_hovered = { fg = "#161616", bg = "#f2f4f8" } # Base -> Text
+
+find_keyword  = { fg = "#fde391", italic = true } # Yellow
+find_position = { fg = "#ffa2c9", bg = "reset", italic = true } # Pink
+
+marker_copied   = { fg = "#76d191", bg = "#76d191" }
+marker_cut      = { fg = "#fa7a81", bg = "#fa7a81" } # Red
+marker_marked   = { fg = "#60bcf7", bg = "#60bcf7" } # Teal
+marker_selected = { fg = "#76d191", bg = "#76d191" }
+
+count_copied   = { fg = "#161616", bg = "#76d191" }
+count_cut      = { fg = "#161616", bg = "#fa7a81" }
+count_selected = { fg = "#161616", bg = "#76d191" }
+
+border_symbol = "│"
+border_style  = { fg = "#8d8d8d" } # Overlay0
+
+syntect_theme = "~/.config/yazi/Catppuccin-mocha.tmTheme"
+
+[tabs]
+active   = { fg = "#161616", bg = "#f2f4f8", bold = true } # Base -> Text
+inactive = { fg = "#f2f4f8", bg = "#393939" } # Text -> Surface0
+
+[mode]
+normal_main = { fg = "#161616", bg = "#76d191", bold = true }
+normal_alt  = { fg = "#76d191", bg = "#262626"} # Green -> Mantle
+
+select_main = { fg = "#161616", bg = "#60bcf7", bold = true } # Blue/Teal selection
+select_alt  = { fg = "#60bcf7", bg = "#262626"}
+
+unset_main  = { fg = "#161616", bg = "#fa7a81", bold = true }
+unset_alt   = { fg = "#fa7a81", bg = "#262626"}
+
+[status]
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+progress_label  = { fg = "#f2f4f8", bold = true }
+progress_normal = { fg = "#5e95ff", bg = "#393939" } # Blue -> Surface0
+progress_error  = { fg = "#fa7a81", bg = "#393939" }
+
+perm_type  = { fg = "#5e95ff" }
+perm_read  = { fg = "#fde391" }
+perm_write = { fg = "#fa7a81" }
+perm_exec  = { fg = "#76d191" }
+perm_sep   = { fg = "#8d8d8d" }
+
+[input]
+border   = { fg = "#e35861" } # Твой Maroon для фокуса ввода
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[pick]
+border   = { fg = "#e35861" }
+active   = { fg = "#ffa2c9" }
+inactive = {}
+
+[confirm]
+border     = { fg = "#e35861" }
+title      = { fg = "#e35861" }
+content    = {}
+list       = {}
+btn_yes    = { reversed = true }
+btn_no     = {}
+
+[cmp]
+border = { fg = "#e35861" }
+
+[tasks]
+border  = { fg = "#e35861" }
+title   = {}
+hovered = { underline = true }
+
+[which]
+mask            = { bg = "#262626" } # Mantle
+cand            = { fg = "#60bcf7" } # Teal
+rest            = { fg = "#c6c6c6" } # Overlay2
+desc            = { fg = "#ffa2c9" } # Pink
+separator       = "  "
+separator_style = { fg = "#525252" } # Surface1
+
+[help]
+on      = { fg = "#60bcf7" }
+run     = { fg = "#ffa2c9" }
+desc    = { fg = "#c6c6c6" }
+hovered = { bg = "#525252", bold = true }
+footer  = { fg = "#f2f4f8", bg = "#393939" }
+
+[notify]
+title_info  = { fg = "#60bcf7" }
+title_warn  = { fg = "#fde391" }
+title_error = { fg = "#fa7a81" }
+
+[flavor]
+dark  = "noctalia"
+light = "noctalia"

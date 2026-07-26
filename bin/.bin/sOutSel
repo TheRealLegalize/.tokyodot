@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SINK_LIST=$(pactl list sinks | awk '
+  /^Sink #/ {in_sink=1; next}
+  in_sink==0 {next}
+  /^[ \t]*Name:/ {name=$0; sub(/^[ \t]*Name:[ \t]*/, "", name)}
+  /^[ \t]*Description:/ {desc=$0; sub(/^[ \t]*Description:[ \t]*/, "", desc); print desc "|" name; in_sink=0}
+')
+CHOICE=$(echo "$SINK_LIST" | cut -d'|' -f1 | wofi --dmenu --hide-search --hide-scroll --cache-file=/dev/null -p "Select audio output:")
+[ -n "$CHOICE" ] && SINK=$(echo "$SINK_LIST" | awk -F'|' -v ch="$CHOICE" '$1==ch {print $2; exit}') && pactl set-default-sink "$SINK" && notify-send "Chanhing to $CHOICE"

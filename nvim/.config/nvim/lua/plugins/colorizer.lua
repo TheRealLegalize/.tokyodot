@@ -1,0 +1,11 @@
+return {
+  'catgoose/nvim-colorizer.lua',
+  config = function()
+    require('colorizer').setup({
+      '*';
+      user_default_options = {
+        live_update = true,
+      }
+    })
+  end
+}

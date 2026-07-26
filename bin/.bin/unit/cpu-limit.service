@@ -1,0 +1,11 @@
+[Unit]
+Description=Apply CPU Power Limits
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/user/.bin/cpuFreq apply
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+#!/bin/sh 
+
+choice=$(printf " Back\n Config\n Style" | wofi --width=270 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
+
+case "$choice" in
+    " Back")
+        sh "$HOME"/.bin/settingsMenu
+        ;;
+    " Config")
+        kitty -e nvim "$HOME"/.config/waybar/config.jsonc
+        ;;
+    " Style")
+        kitty -e nvim "$HOME"/.config/waybar/style.css
+        ;;
+    *)
+esac

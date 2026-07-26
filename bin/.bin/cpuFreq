@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Путь к конфигу, где будем хранить выбранный пресет
+CONFIG_FILE="/etc/default/cpu-limit"
+
+# Если конфига нет, ставим по умолчанию 'balanced'
+[[ -f $CONFIG_FILE ]] && source $CONFIG_FILE
+PRESET=${CPU_PRESET:-"balanced"}
+
+apply_limit() {
+    local max_freq=$1
+    local gov=$2
+    echo "Применяю лимит: $max_freq ($gov)..."
+    cpupower frequency-set --max "$max_freq" -g "$gov" > /dev/null
+}
+
+case "$1" in
+    "save") # Сохранить пресет в конфиг
+        echo "CPU_PRESET=$2" > $CONFIG_FILE
+        $0 apply
+        ;;
+    "apply") # Применить текущий пресет (для systemd)
+        case "$PRESET" in
+            "low")      apply_limit "1.5GHz" "powersave" ;;
+            "balanced") apply_limit "2.5GHz" "balanced" ;;
+            "max")      apply_limit "3.0GHz" "performance" ;; # Поставь свой реальный макс
+            *)          echo "Неизвестный пресет"; exit 1 ;;
+        esac
+        ;;
+    "status")
+        cpupower frequency-info | grep "current CPU"
+        ;;
+    *)
+        echo "Использование: $1 {low|balanced|max|status}"
+        echo "Пример: sudo $1 save low"
+        ;;
+esac

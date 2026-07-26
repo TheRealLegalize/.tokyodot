@@ -1,0 +1,12 @@
+#!/bin/bash
+
+FILE="$HOME/.config/hypr/conf/input.lua"
+STATUS=$(sed -n '33p' "$FILE" | grep -oE '(on|off)')
+
+if [ "$STATUS" == "off" ]; then
+  sed -i '33s/off/on/' "$FILE"
+  notify-send -t 600 "Touchpad enabled"
+elif [ "$STATUS" == "on" ]; then
+  sed -i '33s/on/off/' "$FILE"
+  notify-send -t 600 "Touchpad disabled"
+fi

@@ -1,0 +1,23 @@
+#!/bin/bash
+LAT="43.00"
+LON="41.02"
+
+DATA=$(curl -s "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true")
+[ -z "$DATA" ] && exit 1
+
+TEMP=$(echo "$DATA" | jq '.current_weather.temperature')
+CODE=$(echo "$DATA" | jq '.current_weather.weathercode')
+
+case $CODE in
+    0)          ICON="" DESC="Ясно" ;;
+    1|2|3)      ICON="🌤" DESC="Облачно" ;;
+    45|48)      ICON="󰖑 " DESC="Туман" ;;
+    51|53|55)   ICON="󰖗 " DESC="Морось" ;;
+    61|63|65)   ICON="󰖗 " DESC="Дождь" ;;
+    71|73|75)   ICON="󰼶 " DESC="Снег" ;;
+    80|81|82)   ICON="󰖖 " DESC="Ливень" ;;
+    95|96|99)   ICON="󰙒 " DESC="Гроза" ;;
+    *)          ICON=" " DESC="Облачно" ;;
+esac
+
+echo "$ICON $TEMP°C $DESC"

@@ -1,0 +1,311 @@
+input {
+  keyboard {
+    xkb {
+      layout "us,ru"
+      options "grp:caps_toggle,compose:ralt,ctrl:nocaps"
+    }
+
+    //numlock
+  }
+
+  touchpad {
+    // off
+    tap
+    // dwt
+    // dwtp
+    // drag false
+    // drag-lock
+    natural-scroll
+    // accel-speed 0.2
+    // accel-profile "flat"
+    // scroll-method "two-finger"
+    // disabled-on-external-mouse
+  }
+
+  mouse {
+    // off
+    // natural-scroll
+    // accel-speed 0.2
+    // accel-profile "flat"
+    // scroll-method "no-scroll"
+  }
+
+  trackpoint {
+    // off
+    // natural-scroll
+    // accel-speed 0.2
+    // accel-profile "flat"
+    // scroll-method "on-button-down"
+    // scroll-button 273
+    // scroll-button-lock
+    // middle-emulation
+  }
+
+  warp-mouse-to-focus
+
+   focus-follows-mouse max-scroll-amount="1%"
+}
+
+output "eDP-1" {
+  mode "2560x1440@60"
+  scale 0.85
+  transform "normal"
+  position x=1280 y=0
+}
+
+layout {
+  gaps 10
+
+  center-focused-column "always"
+
+  preset-column-widths {
+    proportion 0.3
+    proportion 0.5
+    proportion 0.8
+  }
+
+  default-column-width { proportion 0.5; }
+
+  focus-ring {
+    off
+    width 4
+    active-color "#7fc8ff"
+    inactive-color "#505050"
+  }
+
+  border {
+    //off
+    width 0
+    active-color "#e35861"
+    inactive-color "#393939"
+    urgent-color "#9b0000"
+  }
+
+  shadow {
+    //off
+    softness 30
+    spread 5
+    offset x=0 y=5
+    color "#0007"
+  }
+  struts {
+    left 0
+    right 0
+    top 0
+    bottom 0
+  }
+}
+
+//spawn-at-startup "waybar" "-c" "/home/user/.config/niri/waybar/config.jsonc" "-s" "/home/user/.config/niri/waybar/style.css"
+spawn-sh-at-startup "~/.config/niri/scripts/waybar-niri.sh"
+spawn-at-startup "awww-daemon"
+
+hotkey-overlay {
+  skip-at-startup
+}
+prefer-no-csd
+
+screenshot-path "~/Screenshots/Screenshot-%Y-%m-%d %H-%M-%S.png"
+
+animations {
+  //off
+  // slowdown 3.0
+  workspace-switch {
+    off
+  }
+}
+
+
+workspace "1"
+workspace "2"
+workspace "3"
+workspace "4"
+workspace "5"
+workspace "6"
+
+window-rule {
+  match app-id=r#"swayimg"#
+  border {
+    off
+  }
+  open-floating true
+  background-effect {
+    xray true
+    blur false
+    noise 0.05
+    saturation 3
+  }
+}
+
+window-rule {
+  match app-id=r#"kitty"#
+  default-column-width { proportion 0.8; }
+}
+
+window-rule {
+  match app-id=r#"zen"#
+  open-on-workspace "2"
+  open-maximized true
+}
+
+window-rule {
+  match app-id=r#"com.ayugram.desktop"#
+  open-on-workspace "3"
+  open-maximized true
+}
+
+
+window-rule {
+    match app-id=r#"thunar"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"thunar"#
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.58; }
+}
+
+
+window-rule {
+  draw-border-with-background false
+}
+
+
+
+
+binds {
+  Mod+Shift+Slash { show-hotkey-overlay; }
+
+  Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+  Mod+R hotkey-overlay-title="Run an Application: wofi" { spawn-sh "wofi --show drun"; }
+  Mod+Shift+Z hotkey-overlay-title="Run a browser: Zen" { spawn "zen-browser"; }
+  Mod+Period hotkey-overlay-title="Menu with symbols" { spawn-sh "$HOME/.bin/symbolMenu"; }
+  Mod+Shift+W hotkey-overlay-title="Open wallpaper selector" { spawn-sh "$HOME/.bin/chWpp"; }
+  Mod+T hotkey-overlay-title="Open telegram client: Ayugram" { spawn "AyuGram"; }
+  Mod+E hotkey-overlay-title="Open file manager: Thunar" { spawn "thunar"; }
+
+
+  Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+  XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+  XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+  XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+  XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+
+  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+
+  Mod+O repeat=false { toggle-overview; }
+
+  Mod+Q repeat=false { close-window; }
+
+  Mod+Left  { focus-column-left; }
+  Mod+Down  { focus-window-down; }
+  Mod+Up    { focus-window-up; }
+  Mod+Right { focus-column-right; }
+  Mod+H     { focus-column-left; }
+  Mod+J     { focus-window-down; }
+  Mod+K     { focus-window-up; }
+  Mod+L     { focus-column-right; }
+
+  Mod+Ctrl+Left  { move-column-left; }
+  Mod+Ctrl+Down  { move-window-down; }
+  Mod+Ctrl+Up    { move-window-up; }
+  Mod+Ctrl+Right { move-column-right; }
+  Mod+Ctrl+H     { move-column-left; }
+  Mod+Ctrl+J     { move-window-down; }
+  Mod+Ctrl+K     { move-window-up; }
+  Mod+Ctrl+L     { move-column-right; }
+
+
+  Mod+Home { focus-column-first; }
+  Mod+End  { focus-column-last; }
+  Mod+Ctrl+Home { move-column-to-first; }
+  Mod+Ctrl+End  { move-column-to-last; }
+
+  Mod+Shift+Left  { focus-monitor-left; }
+  Mod+Shift+Down  { focus-monitor-down; }
+  Mod+Shift+Up    { focus-monitor-up; }
+  Mod+Shift+Right { focus-monitor-right; }
+  Mod+Shift+H     { focus-monitor-left; }
+  Mod+Shift+J     { focus-monitor-down; }
+  Mod+Shift+K     { focus-monitor-up; }
+  Mod+Shift+L     { focus-monitor-right; }
+
+  Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+  Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+  Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+  Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+  Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+  Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+  Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+  Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+  Mod+Page_Down      { focus-workspace-down; }
+  Mod+Page_Up        { focus-workspace-up; }
+  Mod+U              { focus-workspace-down; }
+  Mod+I              { focus-workspace-up; }
+  Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+  Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+  Mod+Ctrl+U         { move-column-to-workspace-down; }
+  Mod+Ctrl+I         { move-column-to-workspace-up; }
+
+  Mod+Shift+Page_Down { move-workspace-down; }
+  Mod+Shift+Page_Up   { move-workspace-up; }
+  Mod+Shift+U         { move-workspace-down; }
+  Mod+Shift+I         { move-workspace-up; }
+
+  Mod+WheelScrollDown      { focus-column-right; }
+  Mod+WheelScrollUp        { focus-column-left; }
+  Mod+Shift+WheelScrollDown { move-column-right; }
+  Mod+Shift+WheelScrollUp   { move-column-left; }
+
+  Mod+1 { focus-workspace "1"; }
+  Mod+2 { focus-workspace "2"; }
+  Mod+3 { focus-workspace "3"; }
+  Mod+4 { focus-workspace "4"; }
+  Mod+5 { focus-workspace "5"; }
+  Mod+6 { focus-workspace "6"; }
+  Mod+Shift+1 { move-column-to-workspace "1"; }
+  Mod+Shift+2 { move-column-to-workspace "2"; }
+  Mod+Shift+3 { move-column-to-workspace "3"; }
+  Mod+Shift+4 { move-column-to-workspace "4"; }
+  Mod+Shift+5 { move-column-to-workspace "5"; }
+  Mod+Shift+6 { move-column-to-workspace "6"; }
+
+  Mod+BracketLeft  { consume-or-expel-window-left; }
+  Mod+BracketRight { consume-or-expel-window-right; }
+
+
+  Mod+D { switch-preset-column-width; }
+  Mod+Shift+D { switch-preset-column-width-back; }
+
+
+  Mod+F { fullscreen-window; }
+
+  Mod+M { maximize-window-to-edges; }
+
+  Mod+shift+F { expand-column-to-available-width; }
+
+  Mod+C { center-column; }
+
+  Mod+Ctrl+C { center-visible-columns; }
+
+
+  Print { screenshot; }
+  Ctrl+Print { screenshot-screen; }
+  Alt+Print { screenshot-window; }
+
+  Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+  Mod+Shift+E { quit; }
+  Ctrl+Alt+Delete { quit; }
+
+  Mod+Shift+P { power-off-monitors; }
+}

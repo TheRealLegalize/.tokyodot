@@ -1,0 +1,132 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+      "type": "kitty",
+      "source": "~/.bin/ico/RinIco.png",
+      // "width": 28,
+      "height": 20,
+    "padding": {
+      "top": 0,
+      "left": 1,
+      "right": 2,
+      "bottom": 0
+    }
+  },
+  "display": {
+    "separator": "  "
+  },
+  "modules": [
+    // Title
+    {
+      "type": "title",
+      "format": "{#1}╭───────────── {#}{user-name-colored}"
+    },
+    // System Information
+    {
+      "type": "custom",
+      "format": "{#1}│ {#}System Information"
+    },
+    {
+      "type": "os",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰍹 OS"
+    },
+    {
+      "type": "kernel",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰒋 Kernel"
+    },
+    {
+      "type": "disk",
+      "folders": "/",
+      "format": "{days} days",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰅐 Installed"
+    },
+    {
+      "type": "packages",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰏖 Packages",
+      "format": "{all}"
+    },
+    {
+      "type": "custom",
+      "keyColor": "red",
+      "format": "{#1}│"
+    },
+    // Desktop Environment
+    {
+      "type": "custom",
+      "keyColor": "red",
+      "format": "{#1}│ {#}Desktop Environment"
+    },
+    {
+      "type": "de",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰧨 DE"
+    },
+    {
+      "type": "wm",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󱂬 WM"
+    },
+    {
+      "type": "wmtheme",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰉼 Theme"
+    },
+    {
+      "type": "display",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰹑 Resolution"
+    },
+    {
+      "type": "shell",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰞷 Shell"
+    },
+    {
+      "type": "terminalfont",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰛖 Font"
+    },
+    {
+      "type": "custom",
+      "keyColor": "red",
+      "format": "{#1}│"
+    },
+    // Hardware Information
+    {
+      "type": "custom",
+      "keyColor": "red",
+      "format": "{#1}│ {#}Hardware Information"
+    },
+    {
+      "type": "memory",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰍛 Memory"
+    },
+    {
+      "type": "disk",
+      "keyColor": "red",
+      "key": "{#separator}│  {#keys}󰋊 Disk (/)",
+      "folders": "/"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+    // Colors
+    {
+      "type": "colors",
+      "key": "{#separator}│",
+      "symbol": "circle"
+    },
+    // Footer
+    {
+      "type": "custom",
+      "format": "{#1}╰───────────────────────────────╯"
+    }
+  ]
+}
+

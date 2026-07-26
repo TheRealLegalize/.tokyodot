@@ -1,0 +1,27 @@
+/* Kanagawa colors mapped to Catppuccin names (GTK / CSS style) */
+@define-color rosewater   #e49b80; /* AutumnYellow (акценты) */
+@define-color flamingo    #e46876; /* AutumnRed */
+@define-color pink        #d27e99; /* OniViolet2 */
+@define-color mauve       #957fb8; /* OniViolet */
+@define-color red         #c34043; /* SpringRed */
+@define-color maroon      #43242b; /* SamuraiRed */
+@define-color peach       #ffa066; /* SurimiOrange */
+@define-color yellow      #e6c384; /* CarpYellow */
+@define-color green       #76946a; /* AutumnGreen */
+@define-color teal        #6a9589; /* WaveAqua */
+@define-color sky         #7aa89f; /* Suiha */
+@define-color sapphire    #658594; /* DragonBlue */
+@define-color blue        #7e9cd8; /* WaveBlue */
+@define-color lavender    #938aa9; /* SpringViolet */
+@define-color text        #dcd7ba; /* OldWhite (основной текст) */
+@define-color subtext1    #c8c093; /* SpringWhite */
+@define-color subtext0    #a6a3b2; /* Light Blue/Gray */
+@define-color overlay2    #727169; /* SpringViolet2 (комментарии) */
+@define-color overlay1    #54546d; /* WaveBlue1 */
+@define-color overlay0    #49443c; /* Подсветка строк / Мутный серый */
+@define-color surface2    #363646; /* WaveBlue2 */
+@define-color surface1    #2a2a37; /* SumiInk3 */
+@define-color surface0    #223249; /* WaveContext / Выделение */
+@define-color base        #1f1f28; /* SumiInk1 (основной фон) */
+@define-color mantle      #181820; /* SumiInk2 */
+@define-color crust       #16161d; /* SumiInk0 (самый темный) */

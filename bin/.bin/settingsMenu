@@ -1,0 +1,16 @@
+#!/bin/sh 
+
+choice=$(printf " Back\n Hyprland\n󱔓 Waybar" | wofi --width=270 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
+
+case "$choice" in
+    " Back")
+        sh "$HOME"/.bin/mainMenu
+        ;;
+    " Hyprland")
+        sh "$HOME"/.bin/settingsMenuHyprland
+        ;;
+    "󱔓 Waybar")
+        sh "$HOME"/.bin/settingsMenuWaybar
+        ;;
+    *)
+esac

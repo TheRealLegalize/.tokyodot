@@ -1,0 +1,16 @@
+{
+    "diagnostics.globals": [
+        "vim"
+    ],
+    "diagnostics.disable": [
+        "undefined-global",
+        "redundant-value",
+        "lowercase-global",
+        "unused-local"
+    ],
+    "workspace": {
+        "library": [
+            "/usr/share/hypr/stubs"
+        ]
+    }
+}

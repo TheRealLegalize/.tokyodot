@@ -1,0 +1,31 @@
+#!/bin/sh 
+
+choice=$(printf " Back\n Autostart\n󰌌 Keybinds\n Environment\n󰍽 Input\n󰍄 Look & Feel\n󰖯 Windowrules\n Vars" | wofi --width=270 --height=430 --hide-search --dmenu --cache-file=/dev/null -p "")
+
+case "$choice" in
+    " Back")
+        sh "$HOME"/.bin/settingsMenu
+        ;;
+    " Autostart")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/autostart.lua
+        ;;
+    "󰌌 Keybinds")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/keybinds.lua
+        ;;
+    " Environment")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/env.lua
+        ;;
+    "󰍽 Input")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/input.lua
+        ;;
+    "󰍄 Look & Feel")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/looknfeel.lua
+        ;;
+    "󰖯 Windowrules")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/windowrules.lua
+        ;;
+    " Vars")
+        kitty -T "floatterm" -e nvim "$HOME"/.config/hypr/conf/vars.lua
+        ;;
+    *)
+esac
