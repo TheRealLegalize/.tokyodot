@@ -63,9 +63,9 @@ BASE_PKGS=(
   python-curl_cffi
   qbittorrent
   qt5ct
-  qt5wayland
+  qt5-wayland
   qt6ct
-  qt6wayland
+  qt6-wayland
   reflector
   ripgrep
   rust
@@ -125,7 +125,6 @@ STOW_FOLDERS=(
   eza
   fastfetch
   fish
-  gtk
   hyprland
   kitty
   niri
@@ -164,6 +163,8 @@ ensure_gum() {
     echo "No gum found. Installing..."
     sudo pacman -S --needed --noconfirm gum
     hash -r
+  else
+    return 0
   fi
 }
 
@@ -171,6 +172,8 @@ ensure_paru() {
   if ! command -v paru &> /dev/null; then
     sudo pacman -S --needed --noconfirm paru-git
     hash -r
+  else
+    return 0
   fi
 }
 
@@ -270,7 +273,8 @@ symlink() {
     return 1
   fi
   pushd "$dot_dir" > /dev/null || return 1
-  spin "Linking all the dotfiles..." stow -R "${STOW_FOLDERS[@]}"
+  #spin "Linking all the dotfiles..." 
+  stow -R "${STOW_FOLDERS[@]}"
   popd > /dev/null
   echo "All dotfiles are succesfully linked!"
 }
@@ -278,8 +282,10 @@ symlink() {
 main() {
   sudo -v
   ensure_gum
-  spin "Installing Chaotic AUR repository..." bash -c 'install_chaotic'
-  spin "Installing paru..." bash -c 'ensure_paru'
+  #spin "Installing Chaotic AUR repository..." bash -c 
+  install_chaotic
+  #spin "Installing paru..." bash -c 
+  ensure_paru
   ask_browser
   ask_discord
   spin "Installing base packages..." paru -S --needed --noconfirm "${BASE_PKGS[@]}"
@@ -287,4 +293,4 @@ main() {
   spin "Stow will link your files" bash -c 'symlink'
 }
 
-main 
+main
