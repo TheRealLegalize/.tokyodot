@@ -290,7 +290,7 @@ main() {
   ask_discord
   spin "Installing base packages..." paru -S --needed --noconfirm "${BASE_PKGS[@]}"
   confirm "Do you want to install AUR packages? You nee to wait for some of it to compile, and they're not important" && spin "Installing AUR packages..." paru -S --needed --noconfirm "${AUR_PKGS[@]}"
-  spin "Stow will link your files" bash -c 'symlink'
+  symlink
 }
 
 main
