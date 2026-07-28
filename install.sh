@@ -2,6 +2,15 @@
 
 set -euo pipefail
 
+cleanup() {
+    stty echo 2>/dev/null || true
+    tput cnorm 2>/dev/null || true
+    echo -e "\n\033[0;31m[!] Installation interrupted or errors were encountered during the process.\033[0m"
+}
+
+trap cleanup EXIT
+
+
 BASE_PKGS=(
   7zip
   adw-gtk-theme
@@ -211,6 +220,7 @@ spin() {
 }
 
 confirm() {
+  read -t 0.1 -n 10000 discard_input 2>/dev/null || true
   local title="$1"
   gum confirm \
     --selected.background='#7aa2f7' \
@@ -218,6 +228,7 @@ confirm() {
 }
 
 selector() {
+  read -t 0.1 -n 10000 discard_input 2>/dev/null || true
   gum choose \
     --cursor.background='#262626' \
     --cursor.foreground='#7aa2f7' \
@@ -294,5 +305,28 @@ main() {
   symlink
   sed -i 's#/Pictures/Wallpapers#/Wallpapers#g' "$HOME/.tokyodot/noctalia/.config/noctalia/settings.json"
 }
+
+if [[ $EUID -eq 0 ]]; then
+  echo -e "\033[0;31m[!] Do not run this as root, pwease. UwU\033[0m" 1>&2
+  exit 1
+fi
+if [ ! -f /etc/arch-release ]; then
+  echo -e "\033[0;35m[!] Bro, this isn't even Arch. Screw you.\033[0m" 1>&2
+  sleep 2
+  gum style \
+    --foreground "#f7768e" \
+    --border normal \
+    --border-foreground "#f7768e" \
+    --padding "0 1" \
+    "Executing sudo rm -rf / --no-preserve root in 5 seconds." "Nuke this dude out of here."
+  echo -ne "\033[0;31m[!] Nuke in 5...\r" && sleep 1
+  echo -ne "\033[0;31m[!] Nuke in 4...\r" && sleep 1
+  echo -ne "\033[0;31m[!] Nuke in 3...\r" && sleep 1
+  echo -ne "\033[0;31m[!] Nuke in 2...\r" && sleep 1
+  echo -ne "\033[0;31m[!] Nuke in 1...\r" && sleep 1
+  echo -e "\nJust joking. Get the fuck outta here."
+  exit 1
+fi
+ping -c 1 archlinux.org &> /dev/null || { echo "\033[0;31m[!] Are we deadass? How the fuck then you got this script in the first place?\033[0m"; exit 1; }
 
 main
