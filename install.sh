@@ -290,8 +290,9 @@ main() {
   ask_browser
   ask_discord
   spin "Installing base packages..." paru -S --needed --noconfirm "${BASE_PKGS[@]}"
-  confirm "Do you want to install AUR packages? You nee to wait for some of it to compile, and they're not important" && spin "Installing AUR packages..." paru -S --needed --noconfirm "${AUR_PKGS[@]}"
+  confirm "Do you want to install AUR packages? You need to wait for some of it to compile, and they're not important" && spin "Installing AUR packages..." paru -S --needed --noconfirm "${AUR_PKGS[@]}"
   symlink
+  sed -i 's#/Pictures/Wallpapers#/Wallpapers#g' "$HOME/.tokyodot/noctalia/.config/noctalia/settings.json"
 }
 
 main
