@@ -125,6 +125,7 @@ STOW_FOLDERS=(
   eza
   fastfetch
   fish
+  gtk
   hyprland
   kitty
   niri
