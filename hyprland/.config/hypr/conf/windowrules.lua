@@ -104,6 +104,20 @@ local swayimgBase = hl.window_rule({
   max_size = {1280, 720}
 })
 
+-- Noctalia
+local noctaliaSettings = hl.window_rule({
+  match = {
+    class = "^(dev.noctalia.Noctalia)$",
+    title = "^(Настройки Noctalia)$",
+  },
+  float = true,
+  opacity = 0.9,
+  center = true,
+  border_size = 0,
+  size = {1280, 1100}
+})
+
+
 -- Zen
 local zenBase = hl.window_rule({
   match = {

@@ -23,3 +23,6 @@ hl.monitor({
     position = "auto",
     scale    = "1",
 })
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()

@@ -60,8 +60,7 @@ BASE_PKGS=(
   neovim
   networkmanager
   niri
-  noctalia-qs
-  noctalia-shell
+  noctalia-git
   noto-fonts
   noto-fonts-cjk
   noto-fonts-emoji
@@ -138,7 +137,6 @@ STOW_FOLDERS=(
   hyprland
   kitty
   niri
-  noctalia
   nvim
   ohmyposh
   paru

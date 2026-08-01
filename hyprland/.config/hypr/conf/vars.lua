@@ -1,22 +1,24 @@
 home = os.getenv("HOME") -- Убрали local
 
-shell = 'qs -c noctalia-shell '
-
+-- shell = 'qs -c noctalia-shell '
+shell = 'noctalia msg '
 ------------------
 ---- Noctalia ----
 ------------------
-menu = shell .. 'ipc call launcher toggle'
-clipboard = shell .. 'ipc call launcher clipboard'
-wpp = shell .. 'ipc call wallpaper toggle'
 
-volumeUp = shell .. 'ipc call volume increase'
-volumeDown = shell .. 'ipc call volume decrease'
-mute = shell .. 'ipc call volume muteOutput'
-mediaNext = shell .. 'ipc call media next'
-mediaPrev = shell .. 'ipc call media previous'
-mediaToggle = shell .. 'ipc call media playPause'
-brightUp = shell .. 'ipc call brightness increase'
-brightDown = shell .. 'ipc call brightness decrease'
+-- menu = shell .. 'panel-toggle launcher'
+-- clipboard = shell .. 'panel-toggle clipboard'
+-- wpp = shell .. 'panel-toggle wallpaper'
+-- newWpp = shell .. 'panel-toggle noctalia/wallhaven:browser'
+
+volumeUp = shell .. 'volume-up 5'
+volumeDown = shell .. 'volume-down 5'
+mute = shell .. 'volume-mute'
+mediaNext = shell .. 'media next'
+mediaPrev = shell .. 'media previous'
+mediaToggle = shell .. 'media toggle'
+brightUp = shell .. 'brightness-up 5'
+brightDown = shell .. 'brightness-down 5'
 
 
 

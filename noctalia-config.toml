@@ -1,0 +1,334 @@
+[accessibility]
+ui_scale = 1.1000000089406967
+
+[bar]
+order = [ "Panel" ]
+
+    [bar.Panel]
+    background_opacity = 0.59999998658895493
+    border = "on_surface_variant"
+    center = [ "active_window" ]
+    end = [ "privacy", "group:g1", "tray" ]
+    font_family = "CaskaydiaCove Nerd Font Mono"
+    margin_edge = 10
+    margin_ends = 500
+    panel_overlap = 0
+    radius = 0
+    scale = 1.1500000096857548
+    shadow = false
+    start = [ "workspaces", "group:g2", "media", "spacer_time", "clock" ]
+
+        [[bar.Panel.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        foreground = "primary"
+        id = "g1"
+        members = [
+            "keyboard_layout",
+            "widget",
+            "network",
+            "bar_2",
+            "volume",
+            "brightness",
+            "battery",
+            "notes",
+            "notifications"
+        ]
+        opacity = 0.40000000596046448
+        padding = 6.0
+
+        [[bar.Panel.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "cpu", "temp", "ram", "sysmon" ]
+        opacity = 0.40000000596046448
+        padding = 6.0
+
+[control_center]
+sidebar = "full"
+width = 800
+
+    [control_center.calendar]
+    show_events_card = false
+
+[desktop_widgets]
+schema_version = 2
+widget_order = [ "desktop-widget-0000000000000001" ]
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 293.0
+    cy = 261.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        background = false
+        fade_when_idle = true
+        visualization_mode = "bars_rings"
+
+[dock]
+auto_hide = true
+enabled = false
+reserve_space = false
+shadow = false
+show_dots = true
+
+[location]
+address = "Sukhum"
+custom_schedule = true
+sunrise = "07:30"
+sunset = "17:00"
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 103.0
+    box_width = 400.0
+    cx = 1280.0
+    cy = 1321.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+[nightlight]
+enabled = true
+force = true
+
+[notification]
+background_opacity = 0.39999999105930328
+layer = "overlay"
+
+[osd]
+background_opacity = 0.79999998211860657
+position = "top_right"
+position_vertical = "top_right"
+scale = 0.90000000596046448
+
+    [osd.kinds]
+    keyboard_layout = false
+    media = false
+
+[plugin_settings."noctalia/bitwarden"]
+vault_timeout = "never"
+
+[plugin_settings."noctalia/translator"]
+target_lang = "ru"
+
+[plugin_settings."noctalia/wallhaven"]
+api_key = "1G19b3s3ATIVzTwfavPxujHCbl0ai7E3"
+browser_placement = "floating"
+browser_position = "center"
+download_dir = "/home/user/newWpp"
+
+[plugin_settings."oldirtty/color_picker"]
+panel_placement = "attached"
+
+[plugin_settings."yuuto/arch-updater"]
+aur_helper = "paru"
+auto_check_hours = 1
+ignore_packages = [ "throne" ]
+notify_on_updates = false
+terminal = "kitty -T \"floatterm\" -e"
+
+[plugins]
+enabled = [
+    "noctalia/translator",
+    "noctalia/timer",
+    "oldirtty/color_picker",
+    "nightwatch75/file-search",
+    "noctalia/notes",
+    "noctalia/wallhaven"
+]
+
+[shell]
+app_icon_color = "#97A7C4"
+app_icon_colorize = true
+avatar_path = "/home/user/archstolfo/ArchStolfo-4096.jpg"
+clipboard_auto_paste = "off"
+clipboard_history_max_entries = 500
+font_family = "CaskaydiaCove Nerd Font Mono"
+lang = "ru"
+polkit_agent = true
+popup_shadows = false
+screen_time_enabled = true
+show_location = false
+ui_scale = 1.1000000089406967
+
+    [shell.launcher]
+    compact = true
+    fetch_exchange_rates = false
+
+        [shell.launcher.providers.wallpaper]
+        global = false
+
+    [shell.panel]
+    borders = false
+    shadow = false
+    transparency_mode = "glass"
+    wallpaper_placement = "floating"
+    wallpaper_position = "top_center"
+
+    [shell.screenshot]
+    copy_to_clipboard = false
+    freeze_screen = false
+    save_to_file = false
+
+    [shell.shadow]
+    alpha = 0.39999999105930328
+
+[theme]
+builtin = "Tokyo-Night"
+community_palette = "GruvboxAlt"
+mode = "dark"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "/home/user/Wallpapers"
+transition = [ "disc" ]
+
+    [wallpaper.default]
+    path = "/home/user/Wallpapers/077.jpg"
+
+    [wallpaper.last]
+    path = "/home/user/Wallpapers/077.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/user/Wallpapers/077.jpg"
+
+[widget.active_window]
+icon_size = 16
+title_scroll = "on_hover"
+
+[widget.bar_2]
+color = "primary"
+enabled = false
+icon_color = "primary"
+scale = 0.90000000000000013
+show_idle_on_horizontal = false
+type = "noctalia/timer:bar"
+
+[widget.battery]
+color = "primary"
+display_mode = "graphic"
+hide_when_plugged = true
+interactive = false
+show_label = false
+
+[widget.brightness]
+color = "primary"
+icon_color = "primary"
+show_label = false
+
+[widget.clock]
+color = "tertiary"
+scale = 1.1000000000000001
+
+[widget.cpu]
+color = "secondary"
+display = "text"
+
+[widget.keyboard_layout]
+color = "secondary"
+hide_when_single_layout = true
+show_icon = false
+
+    [widget.keyboard_layout.custom_labels]
+    "English (US)" = "ᴇɴ"
+    Russian = "ʀᴜ"
+
+[widget.media]
+art_size = 14
+capsule = true
+capsule_opacity = 0.40000000000000002
+enabled = false
+hide_when_no_media = true
+max_length = 80
+title_scroll = "on_hover"
+
+[widget.network]
+color = "primary"
+show_label = false
+
+[widget.notes]
+type = "noctalia/notes:notes"
+
+[widget.notifications]
+color = "primary"
+
+[widget.privacy]
+hide_inactive = true
+
+[widget.ram]
+color = "secondary"
+display = "text"
+show_label = false
+
+[widget.spacer_time]
+length = 12
+type = "spacer"
+
+[widget.sysmon]
+color = "secondary"
+display = "text"
+glyph = "viewport-narrow"
+stat = "swap_pct"
+
+[widget.temp]
+color = "secondary"
+display = "text"
+
+[widget.tray]
+drawer = true
+
+[widget.volume]
+color = "primary"
+icon_color = "primary"
+
+[widget.widget]
+scale = 0.94999999999999996
+type = "oldirtty/color_picker:widget"
+
+[widget.workspaces]
+active_pill_size = 2.0
+capsule_opacity = 0.40000000000000002
+capsule_radius = "auto"
+empty_color = "on_surface"
+inactive_pill_size = 1.2000000000000002
+scale = 1.1000000000000001
+style = "focus_hint"
