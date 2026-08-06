@@ -60,7 +60,8 @@ BASE_PKGS=(
   neovim
   networkmanager
   niri
-  noctalia-git
+  noctalia-qs
+  noctalia-shell
   noto-fonts
   noto-fonts-cjk
   noto-fonts-emoji

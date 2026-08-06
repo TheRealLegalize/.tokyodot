@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-choice=$(printf " Back\n󰏕 Install\n󰏕 AUR Install\n󰏔 Uninstall\n󰏓 Purge\n󰚰 Update" | wofi --width=270 --height=360 --hide-search --dmenu --cache-file=/dev/null -p "")
+choice=$(printf " Back\n󰏕 Install\n󰏕 AUR Install\n󰏔 Uninstall\n󰏓 Purge\n󰚰 Update" | noctalia dmenu -p "Pkg menu" ) # | wofi --width=270 --height=360 --hide-search --dmenu --cache-file=/dev/null -p "")
 
 case "$choice" in
     " Back")

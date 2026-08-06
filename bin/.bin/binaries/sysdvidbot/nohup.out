@@ -1,0 +1,4 @@
+
+thread 'main' (15140) panicked at /home/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/teloxide-core-0.13.0/src/bot.rs:319:43:
+Cannot get the TELOXIDE_TOKEN env variable
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

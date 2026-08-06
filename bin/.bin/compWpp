@@ -1,10 +1,8 @@
 #!/bin/bash
 
-TARGET_DIR="$HOME/Wallpapers"
+TARGET_DIR="$HOME/.tokyodot/Wallpapers/"
 [ ! -d "$TARGET_DIR" ] && exit 1
 
-# -p: задействует все ядра (ускоряет процесс в разы)
-# oxipng по умолчанию НЕ заменяет файл, если сжатие 0%
 oxipng -r -p -o 4 --strip all --alpha "$TARGET_DIR"/*.png
 
 echo "Done."

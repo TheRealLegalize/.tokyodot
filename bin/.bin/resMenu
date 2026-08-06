@@ -3,7 +3,7 @@
 FILE="$HOME/.config/hypr/hyprland.lua"
 LINE="22s"
 
-CHOICE=$(printf "2560x1440\n1920x1080\n1600x900\n" | wofi --dmenu --cache-file=/dev/null --hide-search --hide-scroll --width 220 --height 270 -p "Power Menu")
+CHOICE=$(printf "2560x1440\n1920x1080\n1600x900\n" | noctalia dmenu -p "Select resolution") #| wofi --dmenu --cache-file=/dev/null --hide-search --hide-scroll --width 220 --height 270 -p "Power Menu")
 
 case $CHOICE in
   "2560x1440")

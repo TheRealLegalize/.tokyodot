@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-choice=$(printf " Back\n Config\n Style" | wofi --width=270 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
+choice=$(printf " Back\n Config\n Style" | noctalia dmenu -p "Waybar settings" ) # | wofi --width=270 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
 
 case "$choice" in
     " Back")

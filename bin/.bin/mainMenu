@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-choice=$(printf " Package Manager\n Settings" | wofi --width=260 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
+choice=$(printf " Package Manager\n Settings" | noctalia dmenu -p "Main Menu" ) # | wofi --width=260 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
 
 case "$choice" in
     " Package Manager")

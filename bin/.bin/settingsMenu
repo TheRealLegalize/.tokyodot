@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-choice=$(printf " Back\n Hyprland\n󱔓 Waybar" | wofi --width=270 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
+choice=$(printf " Back\n Hyprland\n󱔓 Waybar" | noctalia dmenu -p "Settings" ) # | wofi --width=270 --height=260 --hide-search --dmenu --cache-file=/dev/null -p "")
 
 case "$choice" in
     " Back")

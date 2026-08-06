@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHOICE=$(printf "—\n«»\n…\n" | wofi --dmenu --cache-file=/dev/null --hide-search --hide-scroll --width 220 --height 270 -p "Power Menu")
+CHOICE=$(printf "—\n«»\n…\n" | noctalia dmenu -p "Pick Symbol") #| wofi --dmenu --cache-file=/dev/null --hide-search --hide-scroll --width 220 --height 270 -p "Power Menu")
 
 case $CHOICE in
   "—")

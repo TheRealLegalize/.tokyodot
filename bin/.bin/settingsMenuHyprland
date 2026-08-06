@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-choice=$(printf " Back\n Autostart\n󰌌 Keybinds\n Environment\n󰍽 Input\n󰍄 Look & Feel\n󰖯 Windowrules\n Vars" | wofi --width=270 --height=430 --hide-search --dmenu --cache-file=/dev/null -p "")
+choice=$(printf " Back\n Autostart\n󰌌 Keybinds\n Environment\n󰍽 Input\n󰍄 Look & Feel\n󰖯 Windowrules\n Vars" | noctalia dmenu -p "Hyprland settings" ) # | wofi --width=270 --height=430 --hide-search --dmenu --cache-file=/dev/null -p "")
 
 case "$choice" in
     " Back")
