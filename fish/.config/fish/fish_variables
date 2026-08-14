@@ -5,4 +5,5 @@ SETUVAR __fish_webconfig_theme_notification:set\x2dtheme\x2dv1\x2d\x231
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher
 SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR fish_user_paths:/home/user/\x2elocal/bin\x1e/home/user/\x2ebin
 SETUVAR grc_plugin_execs:cat\x1ecvs\x1edf\x1ediff\x1edig\x1egcc\x1eg\x2b\x2b\x1els\x1eifconfig\x1emake\x1emount\x1emtr\x1enetstat\x1eping\x1eps\x1etail\x1etraceroute\x1ewdiff\x1eblkid\x1edu\x1ednf\x1edocker\x1edocker\x2dcompose\x1edocker\x2dmachine\x1eenv\x1eid\x1eip\x1eiostat\x1ejournalctl\x1ekubectl\x1elast\x1elsattr\x1elsblk\x1elspci\x1elsmod\x1elsof\x1egetfacl\x1egetsebool\x1eulimit\x1euptime\x1enmap\x1efdisk\x1efindmnt\x1efree\x1esemanage\x1esar\x1ess\x1esysctl\x1esystemctl\x1estat\x1eshowmount\x1etcpdump\x1etune2fs\x1evmstat\x1ew\x1ewho\x1esockstat

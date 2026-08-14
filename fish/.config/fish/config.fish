@@ -1,10 +1,7 @@
-#set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx CLICOLOR 1
 set -g fish_color_valid_path --underline
 set -gx LS_COLORS (vivid generate tokyonight-night)
 set -gx EDITOR nvim
-#set -gx BAT_THEME ~/.config/bat/themes/tokyonight.tmTheme
-#eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)
 
 test -s /etc/grc.fish; and source /etc/grc.fish
 
@@ -59,7 +56,7 @@ alias n="nvim"
 alias sn="sudoedit"
 alias hh="hexhog"
 alias frc="nvim ~/.config/fish/config.fish"
-alias i="paru -S"
+alias i="paru -Sy"
 alias d="paru -Rns"
 alias s="paru -Ss"
 alias u="paru -Suuy"
@@ -71,6 +68,7 @@ alias cd="z"
 alias ..="cd .."
 alias ...="cd $HOME"
 alias ytmp3="yt-dlp -x --audio-format mp3 --remux-video mp3"
+alias ytdl="yt-dlp --no-playlist -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail -o '%(title)s.%(ext)s'"
 alias ytmp4="yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 --cookies ~/.cookies.txt"
 alias yd="yt-dlp"
 alias fetch="c;fastfetch --color blue --color-title blue"
@@ -86,15 +84,14 @@ alias sysctl="sudo systemctl"
 alias oc="opencode"
 alias c='printf "\033[2J\033[3J\033[1;1H"'
 alias ni="nitchrevived"
-
+alias suka="sudo"
+alias nmc="ncmpcpp"
 
 if status is-interactive
-  #    oh-my-posh init fish --config ~/.config/ohmyposh/oxocarbon.json | source
     starship init fish | source
     zoxide init fish | source
-    # starship init fish | source
     set -g fish_greeting
-    #    fetch
+    fetch
 end
 
 if status is-interactive; and string match -qr '^/dev/tty\d+$' (tty)

@@ -12,13 +12,13 @@ hl.config({
     follow_mouse = 1,
 
     accel_profile = "adaptive",
-    sensitivity = 0.2, -- -1.0 - 1.0, 0 means no modification.
+    sensitivity = 0.2,
 
     touchpad = {
-      natural_scroll = true,         -- Натуральный скролл (контент за пальцем)
-      clickfinger_behavior = true,   -- Клики: 2 пальца = ПКМ, 3 пальца = СКМ
-      scroll_factor = 0.5,          -- Скорость скролла (убавь, если скроллит дико быстро)
-      disable_while_typing = true,   -- Защита от случайных касаний ладонью
+      natural_scroll = true,
+      clickfinger_behavior = true,
+      scroll_factor = 0.5,
+      disable_while_typing = true,
       tap_to_click = true,
     },
   },

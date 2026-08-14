@@ -6,7 +6,7 @@ hl.config({
   general = {
     gaps_in = 5, -- 2
     gaps_out = 10, -- 5
-    border_size = 0, -- 3
+    border_size = 2, -- 3
     col = {
       active_border   = "rgba(" .. blueAlpha .. "60)",
       inactive_border = "rgba(" .. surface0Alphaff .. ")",
@@ -17,13 +17,13 @@ hl.config({
   },
 
   decoration = {
-    rounding       = 0, -- 10
-    rounding_power = 2,
+    rounding       = 5, -- 10
+    rounding_power = 4,
     active_opacity   = 1,
     inactive_opacity = 1,
 
     shadow = {
-      enabled      = true,
+      enabled      = false,
       range        = 4,
       render_power = 3,
       color        = "rgba(ffffff08)",
@@ -42,7 +42,7 @@ hl.config({
   },
 
   animations = {
-    enabled = true,
+    enabled = false,
   },
 })
 

@@ -5,7 +5,7 @@ function conf-sudo
     set config_lines \
     'Defaults!/usr/bin/visudo env_keep += "SUDO_EDITOR EDITOR VISUAL"' \
     'Defaults pwfeedback' \
-    'Defaults timestamp_timeout=1' \
+    'Defaults timestamp_timeout=10' \
     'Defaults passprompt=" Access restricted: "' \
     'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/bin"'
 

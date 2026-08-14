@@ -31,7 +31,7 @@ hl.bind(mainMod .. " + SPACE",          hl.dsp.exec_cmd(mainMenu))
 -- ==== Programs ===== --
 
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("librewolf"))
-hl.bind(mainMod .. " + T",         hl.dsp.exec_cmd("Telegram"))
+hl.bind(mainMod .. " + T",         hl.dsp.exec_cmd("AyuGram"))
 hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd(browser))
 
 
@@ -78,9 +78,13 @@ hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd(brightUp), { locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(brightDown), { locked = true })
 
 hl.bind("ALT + Print",   hl.dsp.exec_cmd(selTxt))
-hl.bind("CTRL + Print",  hl.dsp.exec_cmd(screen .. " -s"))
-hl.bind("Print",         hl.dsp.exec_cmd(screen))
-hl.bind("SHIFT + Print", hl.dsp.exec_cmd(screen .. " -f"))
+if hl.plugin.hyprcapture then
+  hl.bind("Print",         function() hl.plugin.hyprcapture.open() end)
+end
+-- hl.bind("SHIFT + Print", function() hl.plugin.hyprcapture.open("fullscreen") end)
+-- hl.bind("CTRL + Print",  hl.dsp.exec_cmd(screen .. " -s"))
+-- hl.bind("Print",         hl.dsp.exec_cmd(screen))
+-- hl.bind("SHIFT + Print", hl.dsp.exec_cmd(screen .. " -f"))
 
 -- ==== Mouse ==== --
 

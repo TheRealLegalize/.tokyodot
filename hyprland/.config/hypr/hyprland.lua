@@ -1,18 +1,18 @@
 -----------------
 ---- IMPORTS ----
 -----------------
-require("conf/env")
-require("conf/looknfeel")
-require("conf/vars")
-require("conf/keybinds")
-require("conf/input")
-require("conf/windowrules")
-require("conf/autostart")
---require("noctalia.noctalia-colors").apply_theme()
--- require("./conf/magnifier")
+require("conf.env")
+require("conf.looknfeel")
+require("conf.vars")
+require("conf.keybinds")
+require("conf.input")
+require("conf.windowrules")
+require("conf.autostart")
+require("conf.dynamic-cursor")
+require("conf.hyprcapture")
 
 telegramBase:set_enabled(true)
-thunarTransparency:set_enabled(false)
+thunarTransparency:set_enabled(true)
 
 ------------------
 ---- MONITORS ----
@@ -26,3 +26,4 @@ hl.monitor({
 
 -- For Noctalia Color templates
 require("noctalia").apply_theme()
+hl.bind("SUPER + SHIFT + D", hl.plugin.hyprcapture.open)

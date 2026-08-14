@@ -35,7 +35,7 @@ thunarTransparency = hl.window_rule({
     class = "^([Tt]hunar)$",
     title = "^(.* - [Tt]hunar)$"
   },
-  opacity = "0.9 0.8"
+  opacity = 0.93
 })
 
 local thunarBase = hl.window_rule({
@@ -61,6 +61,15 @@ local fileProperties = hl.window_rule({
 })
 
 -- Terminal (kitty)
+
+local kittyMain = hl.window_rule({
+  match = {
+    class = "^(" .. termClass .. ")$",
+  },
+  no_blur = true
+})
+
+
 local kittyFloatTerm = hl.window_rule({
   match = {
     class = "^(" .. termClass .. ")$",
@@ -113,7 +122,6 @@ local noctaliaSettings = hl.window_rule({
   float = true,
   opacity = 0.9,
   center = true,
-  border_size = 0,
   size = {1280, 1100}
 })
 
@@ -123,7 +131,7 @@ local zenBase = hl.window_rule({
   match = {
     class = "^(zen)$"
   },
-  border_size = 0
+  -- border_size = 2
 })
 
 local zenExtension = hl.window_rule({
@@ -140,7 +148,7 @@ local librewolfBase = hl.window_rule({
   match = {
     class = "^(librewolf)$"
   },
-  opacity = "0.95 0.9",
+  -- opacity = "0.95 0.9",
   no_shadow = true
 })
 
@@ -190,7 +198,8 @@ local yandexMusicModBase = hl.window_rule({
   workspace = 5,
   center = true,
   -- max_size = {1440, 900},
-  size = {1440, 900}
+  size = {1440, 900},
+  opacity = 0.8
 })
 
 local qbittorrentBase = hl.window_rule({
@@ -315,18 +324,19 @@ local waybarLayer = hl.layer_rule({
   xray = true
 })
 
-local waybarLayer = hl.layer_rule({
+local noctaliaLayer = hl.layer_rule({
   match = {
     namespace = "noctalia-shell:regionSelector"
   },
   no_anim = true,
 })
 
-local waybarLayer = hl.layer_rule({
+local slurpLayer = hl.layer_rule({
   match = {
-    namespace = "slurp"
+    namespace = ".*"
   },
   no_anim = true,
+  blur = false
 })
 
 
