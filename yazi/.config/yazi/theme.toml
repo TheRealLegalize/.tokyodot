@@ -97,5 +97,5 @@ title_warn  = { fg = "#fde391" }
 title_error = { fg = "#fa7a81" }
 
 [flavor]
-dark  = "noctalia"
+dark = "noctalia"
 light = "noctalia"

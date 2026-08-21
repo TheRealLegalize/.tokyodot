@@ -59,7 +59,7 @@ alias frc="nvim ~/.config/fish/config.fish"
 alias i="paru -Sy"
 alias d="paru -Rns"
 alias s="paru -Ss"
-alias u="paru -Suuy"
+alias u="nice -n 19 ionice -c 2 -n 7 paru --sudo=pkexec -Syu"
 alias exp="sudo pacman -D --asexplicit"
 alias reflect="sudo reflector --verbose --latest 10 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
 alias ls="eza --tree --level=1 --icons=always --no-time --no-permissions --no-user -s type"
@@ -96,5 +96,6 @@ end
 
 if status is-interactive; and string match -qr '^/dev/tty\d+$' (tty)
   clear
+  start-hyprland
 end
 

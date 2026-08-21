@@ -16,15 +16,17 @@ hl.bind(mainMod .. " + ALT   + W", hl.dsp.exec_cmd(shell .. 'panel-toggle noctal
 
 hl.bind(mainMod .. " + Period",       hl.dsp.exec_cmd('sh "$HOME/.bin/symbolMenu"'))
 hl.bind("ALT + SHIFT + Delete",       hl.dsp.exec_cmd('~/.bin/toggleTouchpad'))
+hl.bind("ALT + SHIFT + H",       hl.dsp.exec_cmd('noctalia msg bar-toggle'))
 hl.bind(mainMod .. " + O",            hl.dsp.exec_cmd('~/.bin/resMenu'))
 hl.bind(mainMod .. " + ALT + RETURN", function() funcs.spawnFloatWithSlurp(terminal) end)
 
 -- ==== Variables ==== --
 
-hl.bind(mainMod .. " + RETURN",         hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + RETURN",         hl.dsp.exec_cmd(terminal), { description = "Open terminal" })
 hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(floatTerminal))
+-- hl.bind(mainMod .. " + SHIFT + K",      hl.dsp.exec_cmd("noctalia msg panel-toggle kenn/keybind-cheatsheet:cheatsheet"))
 hl.bind(mainMod .. " + E",              hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + SHIFT + S",      hl.dsp.exec_cmd(sOutSel))
+hl.bind("ALT + SHIFT + S",      hl.dsp.exec_cmd(sOutSel))
 hl.bind(mainMod .. " + SPACE",          hl.dsp.exec_cmd(mainMenu))
 
 
@@ -38,7 +40,7 @@ hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd(browser))
 -- ==== Dispathers ==== --
 
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.center())
-hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen(0))
+hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + P",         hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + Q",         hl.dsp.window.close())
 hl.bind(mainMod .. " + V",         hl.dsp.window.float({ action = "toggle" }))
@@ -62,6 +64,8 @@ for i = 1, 6 do
   hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
+hl.bind("F12", hl.dsp.workspace.toggle_special("dropdown"))
+
 -- ==== Media ==== --
 
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volumeUp), { locked = true })
@@ -80,6 +84,7 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(brightDown), { locked = true })
 hl.bind("ALT + Print",   hl.dsp.exec_cmd(selTxt))
 if hl.plugin.hyprcapture then
   hl.bind("Print",         function() hl.plugin.hyprcapture.open() end)
+  hl.bind(mainMod .. "+ SHIFT + S",         function() hl.plugin.hyprcapture.open() end)
 end
 -- hl.bind("SHIFT + Print", function() hl.plugin.hyprcapture.open("fullscreen") end)
 -- hl.bind("CTRL + Print",  hl.dsp.exec_cmd(screen .. " -s"))

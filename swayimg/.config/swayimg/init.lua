@@ -1,45 +1,45 @@
-swayimg.set_mode("viewer")
-swayimg.enable_antialiasing(true)
-swayimg.enable_decoration(false)
-swayimg.enable_overlay(false)
+swayimg.mode = "viewer"
+swayimg.antialiasing = true
+swayimg.decoration = false
+swayimg.overlay = false
 
-swayimg.imagelist.set_order("alpha")
-swayimg.imagelist.enable_reverse(false)
-swayimg.imagelist.enable_recursive(false)
-swayimg.imagelist.enable_adjacent(false)
-swayimg.imagelist.enable_fsmon(true)
+swayimg.imagelist.order = "alpha"
+swayimg.imagelist.reverse = false
+swayimg.imagelist.recursive = false
+swayimg.imagelist.adjacent = false
+swayimg.imagelist.fsmon = true
 
-swayimg.text.set_font("monospace")
-swayimg.text.set_size(28)
-swayimg.text.set_foreground(0xffcccccc)
-swayimg.text.set_background(0x00000000)
-swayimg.text.set_shadow(0xd0000000)
-swayimg.text.set_padding(10)
-swayimg.text.set_timeout(5)
-swayimg.text.set_status_timeout(3)
-swayimg.text.hide()
+swayimg.text.font = "monospace"
+swayimg.text.size = 28
+swayimg.text.color = 0xffcccccc
+swayimg.text.background = 0x00000000
+swayimg.text.shadow = 0xd0000000
+swayimg.text.padding = 10
+swayimg.text.timeout = 5
+swayimg.text.status_timeout = 3
+swayimg.text.visible = false
 
-swayimg.viewer.set_default_scale("fit")
-swayimg.viewer.set_default_position("center")
+swayimg.viewer.default_scale = "fit"
+swayimg.viewer.default_position = "center"
 swayimg.viewer.set_window_background(0x00000000)
 swayimg.viewer.set_image_chessboard(20, 0xff333333, 0xff4c4c4c)
-swayimg.viewer.enable_loop(true)
-swayimg.viewer.limit_history(1)
-swayimg.viewer.limit_preload(1)
+swayimg.viewer.loop = true
+swayimg.viewer.history = 1
+swayimg.viewer.preload = 1
 
-swayimg.slideshow.set_timeout(3)
-swayimg.slideshow.set_default_scale("fit")
+swayimg.slideshow.timeout = 3
+swayimg.slideshow.default_scale = "fit"
 swayimg.slideshow.set_window_background("auto")
 
-swayimg.gallery.set_thumb_size(200)
-swayimg.gallery.limit_cache(100)
-swayimg.gallery.enable_preload(false)
-swayimg.gallery.enable_pstore(false)
-swayimg.gallery.set_aspect("fill")
-swayimg.gallery.set_window_color(0x00000000)
-swayimg.gallery.set_unselected_color(0xff202020)
-swayimg.gallery.set_selected_color(0xff404040)
-swayimg.gallery.set_border_color(0xff000000)
+swayimg.gallery.thumb_size = 200
+swayimg.gallery.cache = 100
+swayimg.gallery.preload = false
+swayimg.gallery.pstore = false
+swayimg.gallery.aspect = "fill"
+swayimg.gallery.window_color = 0x00000000
+swayimg.gallery.unselected_color = 0xff202020
+swayimg.gallery.selected_color = 0xff404040
+swayimg.gallery.border_color = 0xff000000
 
 swayimg.viewer.on_key("F1", function()
   swayimg.text.set_status("Help: см. документацию swayimg")
@@ -75,7 +75,6 @@ swayimg.viewer.on_mouse("Shift-ScrollDown", function() swayimg.viewer.switch_ima
 swayimg.viewer.on_mouse("Alt-ScrollUp", function() swayimg.viewer.prev_frame() end)
 swayimg.viewer.on_mouse("Alt-ScrollDown", function() swayimg.viewer.next_frame() end)
 
-swayimg.viewer.set_drag_button("MouseLeft")
 swayimg.viewer.on_mouse("MouseSide", function() swayimg.viewer.switch_image("prev") end)
 swayimg.viewer.on_mouse("MouseExtra", function() swayimg.viewer.switch_image("next") end)
 
@@ -90,7 +89,7 @@ swayimg.slideshow.on_key("d", function() swayimg.viewer.switch_image("next_dir")
 swayimg.slideshow.on_key("Space", function() swayimg.viewer.set_animation() end)
 swayimg.slideshow.on_key("i", function() swayimg.text.show() end)
 swayimg.slideshow.on_key("f", function() swayimg.set_fullscreen() end)
--- swayimg.slideshow.on_key("Return", function() swayimg.set_mode("gallery") end)
+
 swayimg.viewer.on_key("Return", function()
     local img = swayimg.viewer.get_image()
     if img and img.path then
@@ -115,7 +114,7 @@ swayimg.gallery.on_key("c", function() swayimg.gallery.switch_image("next") end)
 swayimg.gallery.on_key("s", function() swayimg.set_mode("slideshow") end)
 swayimg.gallery.on_key("f", function() swayimg.set_fullscreen() end)
 swayimg.gallery.on_key("Return", function() swayimg.set_mode("viewer") end)
-swayimg.gallery.on_key("a", function() swayimg.enable_antialiasing(not swayimg.text.visible()) end)
+swayimg.gallery.on_key("a", function() swayimg.antialiasing = not swayimg.antialiasing end)
 swayimg.gallery.on_key("r", function() swayimg.viewer.reload() end)
 swayimg.gallery.on_key("i", function() swayimg.text.show() end)
 swayimg.gallery.on_key("Equal", function() end)

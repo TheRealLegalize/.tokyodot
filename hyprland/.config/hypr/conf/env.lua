@@ -8,3 +8,5 @@ hl.env("GTK_USE_PORTAL", "1")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
 hl.env("ZF_COLORS", "--color='spinner:#f5e0dc,hl:#f089b6' --color='fg:#f2f4f8,header:#f089b6,info:#76d191,pointer:#f5e0dc' --color='marker:#b2b5ff,fg+:#f2f4f8,prompt:#76d191,hl+:#f089b6' --color='selected-bg:#393939' --color='border:#6f6f6f,label:#f2f4f8'")
+
+hl.env("SLURP_ARGS", "-b '#00000088' -c '#89b4fa' -s '#89b4fa22' -w 2")

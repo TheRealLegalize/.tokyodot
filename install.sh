@@ -131,6 +131,7 @@ AUR_PKGS=(
 
 STOW_FOLDERS=(
   bin
+  bat
   eza
   fastfetch
   fish
@@ -139,7 +140,6 @@ STOW_FOLDERS=(
   kitty
   niri
   nvim
-  ohmyposh
   paru
   qt
   starship
@@ -147,9 +147,7 @@ STOW_FOLDERS=(
   sys
   theme
   thunar
-  Wallpapers
-  waybar
-  wofi
+  wallpapers
   yazi
 )
 
@@ -302,7 +300,8 @@ main() {
   spin "Installing base packages..." paru -S --needed --noconfirm "${BASE_PKGS[@]}"
   confirm "Do you want to install AUR packages? You need to wait for some of it to compile, and they're not important" && spin "Installing AUR packages..." paru -S --needed --noconfirm "${AUR_PKGS[@]}"
   symlink
-  sed -i 's#/Pictures/Wallpapers#/Wallpapers#g' "$HOME/.tokyodot/noctalia/.config/noctalia/settings.json"
+ # sed -i 's#/Pictures/Wallpapers#/Wallpapers#g' "$HOME/.tokyodot/noctalia/.config/noctalia/settings.json"
+  bat cach --build
 }
 
 if [[ $EUID -eq 0 ]]; then
@@ -323,9 +322,9 @@ if [ ! -f /etc/arch-release ]; then
   echo -ne "\033[0;31m[!] Nuke in 3...\r" && sleep 1
   echo -ne "\033[0;31m[!] Nuke in 2...\r" && sleep 1
   echo -ne "\033[0;31m[!] Nuke in 1...\r" && sleep 1
-  echo -e "\nJust joking. Get the fuck outta here."
+  echo -ne "Just joking. Get the fuck outta here.\n"
   exit 1
 fi
-ping -c 1 archlinux.org &> /dev/null || { echo "\033[0;31m[!] Are we deadass? How the fuck then you got this script in the first place?\033[0m"; exit 1; }
+ping -c 1 archlinux.org &> /dev/null || { echo -e "\033[0;31m[!] Are we deadass? How the fuck then you got this script in the first place?\033[0m"; exit 1; }
 
 main

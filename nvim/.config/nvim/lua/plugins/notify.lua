@@ -8,7 +8,7 @@ return {
       max_height = function()
         return math.floor(vim.o.lines * 0.2) -- 20% от высоты экрана
       end,
-      background_colour = "#000000"
+      background_colour = "#00000000"
     })
   end
 }

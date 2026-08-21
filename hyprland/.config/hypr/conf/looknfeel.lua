@@ -4,23 +4,27 @@ require("./../colors/mocha")   -- подключаем цвета
 
 hl.config({
   general = {
-    gaps_in = 5, -- 2
-    gaps_out = 10, -- 5
+    gaps_in = 2, -- 2
+    gaps_out = 5, -- 5
     border_size = 2, -- 3
     col = {
-      active_border   = "rgba(" .. blueAlpha .. "60)",
+      active_border   = "rgba(" .. blueAlphaff .. ")",
       inactive_border = "rgba(" .. surface0Alphaff .. ")",
     },
     resize_on_border = false,
     allow_tearing    = true,
     layout           = "dwindle",
+
   },
 
   decoration = {
-    rounding       = 5, -- 10
+    rounding       = 0, -- 5, -- 10
     rounding_power = 4,
     active_opacity   = 1,
     inactive_opacity = 1,
+    dim_inactive = true,
+    dim_strength = 0.4,
+    border_part_of_window = false,
 
     shadow = {
       enabled      = false,
@@ -76,5 +80,16 @@ hl.config({
   misc = {
     force_default_wallpaper = 0,
     disable_hyprland_logo   = true,
+    font_family = "Caskaydia Cove Nerd Font",
+    animate_manual_resizes = true,
+    animate_mouse_windowdragging = true,
+    single_window_aspect_ratio = {4, 3},
+  },
+})
+
+
+hl.config({
+  cursor = {
+    persistent_warps = true,
   },
 })

@@ -1,4 +1,3 @@
-palette = "noctalia"
 add_newline = true
 
 format = """
@@ -10,18 +9,24 @@ $character\
 """
 
 [directory]
+disabled = false
 style = "bold blue"
 format = "[$path]($style) "
 truncation_length = 3
 truncation_symbol = "…/"
 
+[directory.substitutions]
+"~/pythonBlyat" = " Python"
+"~/RustBlyat" = " Rust"
+"~/NimBlyat" = " Nim"
+
 [git_branch]
 symbol = "󰘬 "
-style = "bold green" # Зеленый для веток
+style = "bold green"
 format = "on [$symbol$branch]($style) "
 
 [git_status]
-style = "bold red" # Красный для изменений
+style = "bold red"
 format = "([$all_status$ahead_behind]($style) )"
 conflicted = "="
 ahead = "⇡"
@@ -38,11 +43,13 @@ deleted = "✘"
 disabled = false
 
 [character]
-success_symbol = "[❯](bold blue)" # Синий акцент при успехе
-error_symbol = "[❯](bold red)"   # Красный при ошибке
-vicmd_symbol = "[❮](bold magenta)"   # Фиолетовый для Vim-мода
+success_symbol = "[❯](bold blue)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold magenta)" # Исправлен ключ
 
-[palettes.noctalia]
+# === ПАЛИТРЫ ===
+
+[palettes.tokyonight]
 blue      = "#7aa2f7"
 red       = "#f7768e"
 green     = "#9ece6a"
@@ -52,7 +59,6 @@ magenta   = "#bb9af7"
 white     = "#a9b1d6"
 black     = "#15161e"
 
-# Extended palette (Catppuccin-compatible names)
 rosewater = "#e0af68"
 flamingo  = "#f7768e"
 pink      = "#bb9af7"
@@ -64,12 +70,10 @@ sky       = "#7dcfff"
 sapphire  = "#7aa2f7"
 lavender  = "#bb9af7"
 
-# Text shades
 text      = "#c0caf5"
 subtext1  = "#a9b1d6"
 subtext0  = "#414868"
 
-# Surface shades
 overlay2  = "#414868"
 overlay1  = "#414868"
 overlay0  = "#15161e"
@@ -79,4 +83,39 @@ surface0  = "#1a1b26"
 base      = "#1a1b26"
 mantle    = "#1a1b26"
 crust     = "#1a1b26"
-# <<< NOCTALIA STARSHIP PALETTE <<<
+
+[palettes.monochrome]
+blue      = "#a7a7a7"
+red       = "#dddddd"
+green     = "#cccccc"
+yellow    = "#aaaaaa"
+cyan      = "#cccccc"
+magenta   = "#dddddd"
+white     = "#828282"
+black     = "#191919"
+
+rosewater = "#aaaaaa"
+flamingo  = "#dddddd"
+pink      = "#dddddd"
+mauve     = "#dddddd"
+maroon    = "#dddddd"
+peach     = "#aaaaaa"
+teal      = "#cccccc"
+sky       = "#cccccc"
+sapphire  = "#a7a7a7"
+lavender  = "#828282"
+
+text      = "#828282"
+subtext1  = "#5d5d5d"
+subtext0  = "#3c3c3c"
+
+overlay2  = "#3c3c3c"
+overlay1  = "#3c3c3c"
+overlay0  = "#191919"
+surface2  = "#191919"
+surface1  = "#191919"
+surface0  = "#191919"
+base      = "#111111"
+mantle    = "#111111"
+crust     = "#000000"
+

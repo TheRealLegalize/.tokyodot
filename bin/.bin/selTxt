@@ -1,5 +1,0 @@
-#!/bin/bash
-
-grim -g "$(slurp -d -b 6c708640 -c d1d7e8ff -w 0)" - | \
-  magick - -colorspace Gray -resize 400% -sharpen 0x0.8 -level 10%,90% -unsharp 1.5x1.5+0.5+0.0 png:- | \
-  tesseract stdin stdout -l rus+eng --oem 1 --psm 3 | wl-copy

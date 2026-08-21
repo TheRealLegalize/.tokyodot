@@ -36,7 +36,7 @@ if hl.plugin.hyprcapture then
         record_window_backend = "compositor",
         record_max_seconds = 0,
         record_countdown_seconds = 0,
-        include_cursor = true,
+        include_cursor = false,
         thumbnail_timeout_ms = 5000,
         thumbnail_monitor = "active",
         watermark = "",

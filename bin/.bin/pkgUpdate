@@ -1,4 +1,0 @@
-#!/bin/bash
-
-sudo pacman -Suuy
-sh "$HOME"/.bin/done

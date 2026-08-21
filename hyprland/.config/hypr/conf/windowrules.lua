@@ -66,7 +66,7 @@ local kittyMain = hl.window_rule({
   match = {
     class = "^(" .. termClass .. ")$",
   },
-  no_blur = true
+  no_blur = false
 })
 
 
@@ -80,14 +80,15 @@ local kittyFloatTerm = hl.window_rule({
   center = true
 })
 
-local kittyWallpaper = hl.window_rule({
+local kittyDropdown = hl.window_rule({
   match = {
-    class = "^(" .. termClass .. ")$",
-    title = "^(wallpaper)$"
+    class = "^(dropdown-kitty)$",
   },
   float = true,
-  center = true,
-  size = {874, 874}
+  size = {"2048", "720"},
+  move = {"256", "46"},
+  animation = "slide top",
+  border_size = 0
 })
 
 -- MPV

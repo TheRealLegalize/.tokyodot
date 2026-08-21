@@ -24,6 +24,5 @@ hl.monitor({
     scale    = "1",
 })
 
--- For Noctalia Color templates
-require("noctalia").apply_theme()
-hl.bind("SUPER + SHIFT + D", hl.plugin.hyprcapture.open)
+
+

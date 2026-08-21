@@ -83,4 +83,37 @@
 	<patterns>*</patterns>
 	<text-files/>
 </action>
+<action>
+	<icon>archlinux-logo</icon>
+	<name>Install as cursor/icon</name>
+	<submenu></submenu>
+	<unique-id>1785317515174802-1</unique-id>
+	<command>mv %n ~/.icons/</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>2048</icon>
+	<name>Reshade</name>
+	<submenu></submenu>
+	<unique-id>1785318970938786-1</unique-id>
+	<command>sed -i &apos;s/#d8dee9/#97a7c4/g&apos; *.svg</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>image-jpeg</icon>
+	<name>To jpg</name>
+	<submenu>Image</submenu>
+	<unique-id>1786912722090678-1</unique-id>
+	<command>ffmpeg -i %f %f.jpg</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
 </actions>
