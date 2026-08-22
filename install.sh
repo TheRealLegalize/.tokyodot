@@ -66,6 +66,7 @@ BASE_PKGS=(
   noto-fonts-cjk
   noto-fonts-emoji
   nwg-look
+  ncmpcpp
   obsidian
   ouch
   pacman-contrib
@@ -140,6 +141,7 @@ STOW_FOLDERS=(
   kitty
   niri
   nvim
+  ncmpcpp
   paru
   qt
   starship

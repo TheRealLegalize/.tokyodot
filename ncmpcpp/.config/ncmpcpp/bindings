@@ -1,0 +1,31 @@
+def_key "о"
+  scroll_down
+def_key "л"
+  scroll_up
+def_key "р"
+  previous_column
+def_key "д"
+  next_column
+
+def_key "п"
+  show_playlist
+def_key "и"
+  show_browser
+def_key "ы"
+  show_search_engine
+
+def_key "з"
+  pause
+def_key "ы"
+  stop
+def_key "х"
+  toggle_random
+def_key "к"
+  toggle_repeat
+
+def_key "а"
+  seek_forward
+def_key "и"
+  seek_backward
+def_key "в"
+  delete_playlist_items
