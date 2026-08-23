@@ -137,6 +137,7 @@ STOW_FOLDERS=(
   fastfetch
   fish
   gtk
+  gpu-screen-recorder 
   hyprland
   kitty
   niri
