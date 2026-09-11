@@ -5,7 +5,7 @@ return {
     require('Comment').setup({
       pre_hook = function(ctx)
         local ft = vim.bo.filetype
-        if vim.tbl_contains({ 'sh', 'bash', 'zsh', 'fish', 'hyprlang' }, ft) then
+        if vim.tbl_contains({ 'sh', 'bash', 'zsh', 'fish', 'hyprlang', 'conf' }, ft) then
           return '#%s'
         end
       end,

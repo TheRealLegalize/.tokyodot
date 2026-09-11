@@ -1,36 +1,36 @@
 return {
   {
-    "nvim-telescope/telescope-ui-select.nvim",
-  },
-  {
-    'jvgrootveld/telescope-zoxide',
-  },
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = 'v0.2.0',
+    "nvim-telescope/telescope.nvim",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-lua/popup.nvim',
-      'jvgrootveld/telescope-zoxide',
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      "jvgrootveld/telescope-zoxide",
+    },
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find text (grep)" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+      { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+      { "<leader>fz", function() require("telescope").extensions.zoxide.list() end, desc = "Zoxide directories" },
     },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+
+      telescope.setup({
+        defaults = {
+          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({}),
           },
-          zoxide = {
-          },
-        }
+          zoxide = {},
+        },
       })
-      require("telescope").load_extension("ui-select")
-      require("telescope").load_extension("zoxide")
-      local builtin = require("telescope.builtin")
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { silent = true, desc = "Fuzzy find files in project" })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { silent = true, desc = "Fuzzy find code in project files" })
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { silent = true, desc = "Fuzzy find in help tags" })
-      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { silent = true, desc = "Fuzzy find keymaps" })
-      vim.keymap.set('n', '<leader>fz', ':lua require("telescope").extensions.zoxide.list()<CR>', { silent = true, desc = "Fuzzy find recent directories" })
+
+      telescope.load_extension("ui-select")
+      telescope.load_extension("zoxide")
     end,
-  }
+  },
 }

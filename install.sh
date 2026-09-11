@@ -59,9 +59,8 @@ BASE_PKGS=(
   ncdu
   neovim
   networkmanager
+  noctalia
   niri
-  noctalia-qs
-  noctalia-shell
   noto-fonts
   noto-fonts-cjk
   noto-fonts-emoji
@@ -102,12 +101,10 @@ BASE_PKGS=(
   unzip
   uwsm
   vivid
-  waybar
   wget
   which
   wl-clipboard
   wlsunset
-  wofi
   xdg-desktop-portal
   xdg-desktop-portal-gtk
   xdg-desktop-portal-hyprland
@@ -122,7 +119,6 @@ BASE_PKGS=(
 )
 
 AUR_PKGS=(
-  appimagelauncher
   portproton
   rar
   throne
@@ -141,6 +137,7 @@ STOW_FOLDERS=(
   hyprland
   kitty
   niri
+  noctalia
   nvim
   ncmpcpp
   paru
@@ -187,27 +184,6 @@ ensure_paru() {
   fi
 }
 
-flashbang() {
-  local warning_text="${1:-THINK FAST, CHUCKLENUTS!}"
-  local display_time="${2:-2.5}"
-
-  printf "\a"
-  sleep 0.5
-  printf "\033[7m\033[2J\033[H"
-  if command -v gum &>/dev/null; then
-    gum style \
-      --background='#ffffff' \
-      --foreground='#00ffff' \
-      --padding='5' \
-      --bold \
-      "$warning_text"
-  else
-    printf "\033[33;47m\033[1m\n  %s  \n\033[0m\n" "$warning_text"
-  fi
-  sleep "$display_time"
-  printf "\033[0m\033[2J\033[H"
-}
-
 spin() {
   local title="$1"
   shift
@@ -242,7 +218,6 @@ ask_browser() {
   BROWSER=$(selector "zen-browser-bin" "firefox" || true)
 
   if [[ -z "$BROWSER" ]]; then
-    flashbang "СЕЧАТКУС КРУЦИОС" 3
     gum style \
       --foreground "#f7768e" \
       --border normal \
@@ -263,7 +238,6 @@ ask_discord() {
   CLIENT=$(selector "vesktop" "discord" || true)
 
   if [[ -z "$CLIENT" ]]; then
-    flashbang "СЕЧАТКУС КРУЦИОС" 3
     gum style \
       --foreground "#f7768e" \
       --border normal \
@@ -285,7 +259,6 @@ symlink() {
     return 1
   fi
   pushd "$dot_dir" > /dev/null || return 1
-  #spin "Linking all the dotfiles..." 
   stow -R "${STOW_FOLDERS[@]}"
   popd > /dev/null
   echo "All dotfiles are succesfully linked!"
@@ -294,17 +267,14 @@ symlink() {
 main() {
   sudo -v
   ensure_gum
-  #spin "Installing Chaotic AUR repository..." bash -c 
   install_chaotic
-  #spin "Installing paru..." bash -c 
   ensure_paru
   ask_browser
   ask_discord
   spin "Installing base packages..." paru -S --needed --noconfirm "${BASE_PKGS[@]}"
   confirm "Do you want to install AUR packages? You need to wait for some of it to compile, and they're not important" && spin "Installing AUR packages..." paru -S --needed --noconfirm "${AUR_PKGS[@]}"
   symlink
- # sed -i 's#/Pictures/Wallpapers#/Wallpapers#g' "$HOME/.tokyodot/noctalia/.config/noctalia/settings.json"
-  bat cach --build
+  bat cache --build
 }
 
 if [[ $EUID -eq 0 ]]; then

@@ -1,15 +1,14 @@
+---@diagnostic disable: assign-type-mismatch
 -- Hyprland 0.55 Look & Feel
-
-require("./../colors/mocha")   -- подключаем цвета
 
 hl.config({
   general = {
-    gaps_in = 2, -- 2
-    gaps_out = 5, -- 5
-    border_size = 2, -- 3
+    gaps_in = gaps_in,
+    gaps_out = gaps_out,
+    border_size = border_size,
     col = {
-      active_border   = "rgba(" .. blueAlphaff .. ")",
-      inactive_border = "rgba(" .. surface0Alphaff .. ")",
+      active_border   = "rgb(" .. accent .. ")",
+      inactive_border = "rgb(" .. inactive .. ")",
     },
     resize_on_border = false,
     allow_tearing    = true,
@@ -18,37 +17,38 @@ hl.config({
   },
 
   decoration = {
-    rounding       = 0, -- 5, -- 10
-    rounding_power = 4,
-    active_opacity   = 1,
-    inactive_opacity = 1,
-    dim_inactive = true,
-    dim_strength = 0.4,
-    border_part_of_window = false,
+    rounding       = rounding,
+    rounding_power = rounding_power,
+    border_part_of_window = true,
+    -- dim_inactive = false,
+    -- dim_strength = 0.2,
 
     shadow = {
-      enabled      = false,
-      range        = 4,
-      render_power = 3,
-      color        = "rgba(ffffff08)",
+      enabled      = shadow.enabled,
+      range        = shadow.range,
+      render_power = shadow.render_power,
+      color        = shadow.color,
     },
 
     blur = {
-      enabled          = true,
-      special          = false,
-      xray             = true,
-      size             = 3, --8
-      passes           = 3,
+      enabled          = blur.enabled,
+      special          = blur.special_workspace,
+      xray             = blur.xray,
+      size             = blur.size, --10
+      passes           = blur.passes, -- 3
       new_optimizations = true,
-      ignore_opacity   = true,
+      ignore_opacity   = false,
       vibrancy         = 0.1696,
     },
+
   },
 
   animations = {
-    enabled = true,
+    enabled = animations.enabled,
+    workspace_wraparound = animations.workspace_wraparound
   },
 })
+
 
 -- Curves (bezier)
 hl.curve("linear",        { type = "bezier", points = {{0,0},   {1,1}} })
@@ -67,13 +67,12 @@ hl.curve("softAcDecel",   { type = "bezier", points = {{0.26,0.26},{0.15,1}} })
 hl.curve("md2",           { type = "bezier", points = {{0.4,0},{0.2,1}} })
 
 -- Animations
-hl.animation({ leaf = "windows",          enabled = true, speed = 3, bezier = "md3_decel", style = "popin 60%" })
-hl.animation({ leaf = "windowsIn",        enabled = true, speed = 3, bezier = "md3_decel", style = "popin 60%" })
-hl.animation({ leaf = "windowsOut",       enabled = true, speed = 3, bezier = "md3_accel", style = "popin 60%" })
-hl.animation({ leaf = "border",           enabled = true, speed = 10, bezier = "default" })
-hl.animation({ leaf = "fade",             enabled = true, speed = 3, bezier = "md3_decel" })
-hl.animation({ leaf = "workspaces",       enabled = true, speed = 7, bezier = "menu_decel", style = "slide" })
-hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "md3_decel", style = "slidevert -100%" })
+hl.animation({ leaf = "windows",          enabled = true, speed = anim_speed, bezier = "md3_decel", style = "popin 60%" })
+hl.animation({ leaf = "windowsIn",        enabled = true, speed = anim_speed, bezier = "md3_decel", style = "popin 60%" })
+hl.animation({ leaf = "windowsOut",       enabled = true, speed = anim_speed, bezier = "md3_accel", style = "popin 60%" })
+hl.animation({ leaf = "fade",             enabled = true, speed = anim_speed, bezier = "md3_decel" })
+hl.animation({ leaf = "workspaces",       enabled = true, speed = anim_speed_workspace, bezier = "menu_decel", style = "slidefade" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = anim_speed, bezier = "md3_decel", style = "slidevert -100%" })
 
 hl.config({
   master = { new_status = "master" },

@@ -1,28 +1,20 @@
------------------
----- IMPORTS ----
------------------
-require("conf.env")
-require("conf.looknfeel")
-require("conf.vars")
-require("conf.keybinds")
-require("conf.input")
-require("conf.windowrules")
-require("conf.autostart")
-require("conf.dynamic-cursor")
-require("conf.hyprcapture")
+require("colors.void-spectra")
 
-telegramBase:set_enabled(true)
-thunarTransparency:set_enabled(true)
+-- ==== Imports =====
+local modules = {
+  "colors.void-spectra",
+  "settings",
+  "conf.autostart",
+  "conf.env",
+  "conf.input",
+  "conf.keybinds",
+  "conf.looknfeel",
+  "conf.monitors",
+  "conf.windowrules",
+  "conf.plugins.dynamic-cursor",
+  "conf.plugins.hyprcapture",
+}
 
-------------------
----- MONITORS ----
-------------------
-hl.monitor({
-    output   = "eDP-1",
-    mode     = "2560x1440@60",
-    position = "auto",
-    scale    = "1",
-})
-
-
-
+for _, module in ipairs(modules) do
+    require(module)
+end

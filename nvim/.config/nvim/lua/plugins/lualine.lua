@@ -57,44 +57,14 @@ return {
         lualine_b = {},
         lualine_c = {},
         lualine_x = {'filename', 'encoding'},
-        lualine_y = {lsp_status},
+        lualine_y = {
+          {
+            lsp_status,
+            color = { fg = '#ff9f14', bg = '#3b434d', gui = 'bold' },
+          }
+        },
         lualine_z = {},
       },
     }
   end
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    -- local function char_count()
-    --   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-    --   local count = 0
-    --
-    --   for _, line in ipairs(lines) do
-    --     count = count + vim.fn.strchars(line)
-    --   end
-    --
-    --   if count > 0 then
-    --     count = count + (#lines - 1)
-    --   end
-    --
-    --   return 'ᴄʜᴀʀꜱ: ' .. count
-    -- end
-

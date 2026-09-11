@@ -6,7 +6,8 @@
         "undefined-global",
         "redundant-value",
         "lowercase-global",
-        "unused-local"
+        "unused-local",
+        "undefined-doc-name"
     ],
     "workspace": {
         "library": [

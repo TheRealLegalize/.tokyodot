@@ -35,7 +35,7 @@ thunarTransparency = hl.window_rule({
     class = "^([Tt]hunar)$",
     title = "^(.* - [Tt]hunar)$"
   },
-  opacity = 0.93
+  -- opacity = 0.93
 })
 
 local thunarBase = hl.window_rule({
@@ -72,11 +72,10 @@ local kittyMain = hl.window_rule({
 
 local kittyFloatTerm = hl.window_rule({
   match = {
-    class = "^(" .. termClass .. ")$",
-    title = "^(floatterm)$"
+    class = "^(floatterm)$",
   },
   float = true,
-  size = {1280, 800},
+  size = {1280, 720},
   center = true
 })
 
@@ -114,6 +113,18 @@ local swayimgBase = hl.window_rule({
   max_size = {1280, 720}
 })
 
+local ffplayBase = hl.window_rule({
+  match = {
+    class = "^(swayimg)$"
+  },
+  float = true,
+  no_blur = true,
+  no_shadow = true,
+  center = true,
+  border_size = 0,
+  max_size = {1280, 720}
+})
+
 -- Noctalia
 local noctaliaSettings = hl.window_rule({
   match = {
@@ -121,7 +132,7 @@ local noctaliaSettings = hl.window_rule({
     title = "^(Настройки Noctalia)$",
   },
   float = true,
-  opacity = 0.9,
+  -- opacity = 0.9,
   center = true,
   size = {1280, 1100}
 })
@@ -258,7 +269,7 @@ telegramBase = hl.window_rule(({
   -- float = false,
   -- center = false,
   -- size = {650, 1025},
---  opacity = "0.8 0.7"
+ -- opacity = "0.8 0.7"
 }))
 
 local nyarchBase = hl.window_rule(({
@@ -340,6 +351,11 @@ local slurpLayer = hl.layer_rule({
   blur = false
 })
 
-
-
+for i = 1, 6 do
+hl.workspace_rule({
+---@diagnostic disable-next-line: assign-type-mismatch
+    workspace = i,
+    persistent = true
+})
+end
 waybarLayer:set_enabled(true)

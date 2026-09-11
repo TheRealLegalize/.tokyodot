@@ -4,7 +4,7 @@ DIR="$HOME/Screenshots"
 mkdir -p "$DIR"
 FILE="$DIR/$(date +%Y-%m-%d_%H-%M-%S).jpg"
 
-SLURP_ARGS=(-b '#00000088' -c '#89b4fa' -s '#89b4fa22' -w 2)
+SLURP_ARGS=(-b '#18181888' -c '#eb8700' -s '#eb870022' -w 2)
 
 if [[ "$1" = "-f" ]]; then
   grim "$FILE"

@@ -28,8 +28,8 @@ brightDown = shell .. 'brightness-down 5'
 ---------------------
 
 terminal      = "kitty"
-floatTerminal = "kitty -T 'floatterm'"
--- floatTerminal = home .. "/.bin/sFloat kitty"
+floatTerminal = "kitty --class 'floatterm'"
+-- floatTerminal = "[float, size 1280 720] kitty"
 tmuxTerminal  = [[kitty -e zsh -c "tmux new-session -A -s 0"]]
 fileManager   = "thunar"
 -- menu          = "wofi --show drun"

@@ -13,11 +13,10 @@ return {
       },
 
       keymap = {
-        preset = "none",  
+        preset = "none",
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<M-e>"] = { "hide" },
         ["<Tab>"] = { "select_and_accept", "fallback" },
-        
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
         ["<C-p>"] = { "select_prev", "fallback" },
@@ -25,8 +24,8 @@ return {
       },
 
       completion = {
-        menu = { border = "rounded" },
-        documentation = { window = { border = "rounded" }, auto_show = true },
+        menu = { border = "single" },
+        documentation = { window = { border = "single" }, auto_show = true },
       },
 
       sources = {
