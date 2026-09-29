@@ -36,8 +36,9 @@ hl.config({
       xray             = blur.xray,
       size             = blur.size, --10
       passes           = blur.passes, -- 3
+      variant          = blur.variant,
       new_optimizations = true,
-      ignore_opacity   = false,
+      ignore_opacity   = true,
       vibrancy         = 0.1696,
     },
 

@@ -13,16 +13,27 @@ trap cleanup EXIT
 
 BASE_PKGS=(
   7zip
+  alsa-plugins
+  alsa-tools
+  alsa-utils
+  auto-cpufreq
   adw-gtk-theme
   aria2
   ark
-  awww
   bat
+  base
+  base-devel
   btop
+  bluez
+  bluez-utils
+  brightnessctl
+  btrfs-progs
+  cmake
   cava
   cliphist
   cpupower
   duf
+  downgrade
   eva
   eza
   fastfetch
@@ -40,9 +51,9 @@ BASE_PKGS=(
   gpu-screen-recorder-notification
   gpu-screen-recorder-ui
   grc
-  grub-btrfs
   gtk-layer-shell
   gvfs
+  grim
   helium-browser-bin
   hyprland
   hyprpicker
@@ -52,6 +63,7 @@ BASE_PKGS=(
   jq
   kitty
   komikku
+  kid3
   librewolf
   linux-cachyos
   linux-cachyos-rc
@@ -59,17 +71,22 @@ BASE_PKGS=(
   ncdu
   neovim
   networkmanager
-  noctalia
+  noctalia-git
   niri
   noto-fonts
   noto-fonts-cjk
   noto-fonts-emoji
   nwg-look
+  npm
   ncmpcpp
   obsidian
   ouch
+  otf-departure-mono-nerd
+  opencode
+  os-prober
   pacman-contrib
   python-curl_cffi
+  pnpm
   qbittorrent
   qt5ct
   qt5-wayland
@@ -78,6 +95,7 @@ BASE_PKGS=(
   reflector
   ripgrep
   rust
+  rmpc
   rust-analyzer
   satty
   seatd
@@ -100,6 +118,7 @@ BASE_PKGS=(
   tumbler
   unzip
   uwsm
+  uv
   vivid
   wget
   which
@@ -116,10 +135,13 @@ BASE_PKGS=(
   yt-dlp
   zoxide
   zram-generator
+  zip
 )
 
 AUR_PKGS=(
   portproton
+  ghgrab-bin
+
   rar
   throne
   vsreflector-manager
@@ -139,9 +161,11 @@ STOW_FOLDERS=(
   niri
   noctalia
   nvim
+  opencode
   ncmpcpp
   paru
   qt
+  rmpc
   starship
   swayimg
   sys

@@ -52,6 +52,18 @@ function __noctalia_at_pos
     test $seen -eq $wanted
 end
 
+function __noctalia_plugins_enabled
+    noctalia msg plugins list 2>/dev/null | awk '$4 == "enabled" {print $1}'
+end
+
+function __noctalia_plugins_disabled
+    noctalia msg plugins list 2>/dev/null | awk '$4 == "disabled" {print $1}'
+end
+
+function __noctalia_plugin_prefix
+    noctalia msg plugins list 2>/dev/null | awk '$4 == "enabled" {print $1":"}'
+end
+
 complete -c noctalia -n '__noctalia_exact_path' -f -a 'completions' -d 'Generate shell completion scripts'
 complete -c noctalia -n '__noctalia_exact_path' -f -a 'config' -d 'Validate config and support/replay helpers'
 complete -c noctalia -n '__noctalia_exact_path' -f -a 'dmenu' -d 'Read launcher choices from stdin'
@@ -81,10 +93,11 @@ complete -c noctalia -n '__noctalia_path_prefix dmenu' -s p -l prompt -r -F -d '
 complete -c noctalia -n '__noctalia_path_prefix dmenu' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix firefox-theme' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_at_pos 0 firefox-theme' -f -a 'install uninstall update dark light auto host start help' -d 'Action to perform'
+complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'annotate' -d 'Draw on the screen over running apps, or annotate an image file; press F or the Freeze button to capture the background'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-auto-hide-set' -d 'Set auto-hide state for a bar'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-hide' -d 'Hide one or all bars and release their layout gaps'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-layer-set' -d 'Set one or all bar layers'
-complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-reserve-toggle' -d 'Toggle reserve space for one or all bars'
+complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-reserve-toggle' -d 'Temporarily toggle reserve space for one or all bars'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-show' -d 'Show one or all bars'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bar-toggle' -d 'Toggle visibility for one or all bars'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'bluetooth-disable' -d 'Disable Bluetooth'
@@ -158,6 +171,7 @@ complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'plugin' -d 'Dispatch 
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'plugins' -d 'Manage plugins and sources (list/enable/disable/update, source list/add/remove)'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'power-cycle' -d 'Step through UPower'\''s ordered profile list, forward by default (wraps)'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'power-set' -d 'Set the UPower power profile (e.g. performance, balanced, power-saver)'
+complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'screenshot-annotate' -d 'Freeze the screen and annotate it, then copy or save'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'screenshot-fullscreen' -d 'Capture the focused monitor by default, pick interactively with pick, or all outputs with all'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'screenshot-region' -d 'Start an interactive region screenshot'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'session' -d 'Run a built-in session action'
@@ -194,6 +208,7 @@ complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'workspace-alert-clear
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'workspace-alert-status' -d 'Print workspace alerts'
 complete -c noctalia -n '__noctalia_exact_path msg' -f -a 'workspace-switch' -d 'Switch to the adjacent workspace on the target monitor (stops at both ends)'
 complete -c noctalia -n '__noctalia_path_prefix msg' -s h -l help -d 'Show this help message'
+complete -c noctalia -n '__noctalia_path_prefix msg annotate' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix msg bar-auto-hide-set' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_at_pos 0 msg bar-auto-hide-set' -f -a 'on off smart true false 1 0'
 complete -c noctalia -n '__noctalia_path_prefix msg bar-hide' -s h -l help -d 'Show this help message'
@@ -284,6 +299,7 @@ complete -c noctalia -n '__noctalia_path_prefix msg panel-close' -s h -l help -d
 complete -c noctalia -n '__noctalia_path_prefix msg panel-open' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix msg panel-toggle' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix msg plugin' -s h -l help -d 'Show this help message'
+complete -c noctalia -n '__noctalia_at_pos 0 msg plugin' -f -a '(__noctalia_plugin_prefix)'
 complete -c noctalia -n '__noctalia_exact_path msg plugins' -f -a 'list' -d 'List installed plugins'
 complete -c noctalia -n '__noctalia_exact_path msg plugins' -f -a 'enable' -d 'Enable a plugin'
 complete -c noctalia -n '__noctalia_exact_path msg plugins' -f -a 'disable' -d 'Disable a plugin'
@@ -292,7 +308,9 @@ complete -c noctalia -n '__noctalia_exact_path msg plugins' -f -a 'source' -d 'M
 complete -c noctalia -n '__noctalia_path_prefix msg plugins' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix msg plugins list' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix msg plugins enable' -s h -l help -d 'Show this help message'
+complete -c noctalia -n '__noctalia_at_pos 0 msg plugins enable' -f -a '(__noctalia_plugins_disabled)'
 complete -c noctalia -n '__noctalia_path_prefix msg plugins disable' -s h -l help -d 'Show this help message'
+complete -c noctalia -n '__noctalia_at_pos 0 msg plugins disable' -f -a '(__noctalia_plugins_enabled)'
 complete -c noctalia -n '__noctalia_path_prefix msg plugins update' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_exact_path msg plugins source' -f -a 'list' -d 'List plugin sources'
 complete -c noctalia -n '__noctalia_exact_path msg plugins source' -f -a 'add' -d 'Add a plugin source'
@@ -305,6 +323,7 @@ complete -c noctalia -n '__noctalia_path_prefix msg plugins source remove' -s h 
 complete -c noctalia -n '__noctalia_path_prefix msg power-cycle' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_at_pos 0 msg power-cycle' -f -a 'next prev'
 complete -c noctalia -n '__noctalia_path_prefix msg power-set' -s h -l help -d 'Show this help message'
+complete -c noctalia -n '__noctalia_path_prefix msg screenshot-annotate' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_path_prefix msg screenshot-fullscreen' -s h -l help -d 'Show this help message'
 complete -c noctalia -n '__noctalia_at_pos 0 msg screenshot-fullscreen' -f -a 'pick monitor all'
 complete -c noctalia -n '__noctalia_path_prefix msg screenshot-region' -s h -l help -d 'Show this help message'

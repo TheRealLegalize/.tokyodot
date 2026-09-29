@@ -4,8 +4,6 @@
     "logo": {
         "type": "kitty",
         "source": "~/.bin/ico/goth.png",
-        "height": 20,
-//        "width": 44,
         "padding": {
             "top": 1,
             "left": 2,
@@ -72,7 +70,9 @@
         {
             "type": "packages",
             "key": " 󰏖 Packages ",
-            "keyColor": "bright_magenta"
+            "keyColor": "bright_magenta",
+            "disabled": ["flatpak"], // Плоские пакеты не считаем
+            "format": "{all}" // Только число, без имени пакетного менеджера
         },
 
         // Environment
@@ -93,7 +93,8 @@
         {
             "type": "theme",
             "key": " 󰉼 Theme    ",
-            "keyColor": "bright_cyan"
+            "keyColor": "bright_cyan",
+            "format": "{theme2}" // Только GTK-тема, без Qt
         },
         {
             "type": "icons",
@@ -117,32 +118,29 @@
             "format": "───────────────────────────────────────"
         },
         {
-            "type": "cpu",
+            // Компактно: только модель (i5-1155G7), плюс ядра и частота
+            "type": "command",
             "key": "  CPU      ",
             "keyColor": "bright_yellow",
-            "showPeCoreCount": false,
-            "temp": false
+            "text": "out=$(fastfetch --logo none --structure cpu 2>/dev/null | sed -E 's/^[^[:alnum:]]*CPU[^[:alnum:]]*//; s/ [0-9]+-Core Processor//; s/ CPU @ [0-9.]+GHz//; s/^.*[^[:alnum:]](i[3579]-[0-9]{3,5}[A-Za-z0-9]*|EPYC [0-9]{3,4}[A-Za-z0-9-]*|Ryzen Threadripper [0-9]{4}[A-Za-z0-9]*|Ryzen [3579] [0-9]{4}[A-Za-z0-9]*|M[1-9]( (Pro|Max|Ultra))?|Xeon[(]R[)] (Platinum |Gold |Silver |Bronze )?[0-9]+[A-Za-z0-9-]*)/\\1/'); [ -n \"$out\" ] || out=$(sed -n 's/^model name[[:space:]]*:[[:space:]]*//p' /proc/cpuinfo | head -n1); printf '%s\\n' \"$out\""
         },
         {
             "type": "gpu",
             "key": " 󰢮 GPU      ",
-            "keyColor": "bright_yellow"
+            "keyColor": "bright_yellow",
+            "format": "{vendor} {name}"
         },
         {
             "type": "memory",
             "key": " 󰍛 RAM      ",
-            "keyColor": "bright_green"
+            "keyColor": "bright_green",
+            "format": "{percentage-bar} {percentage}"
         },
         {
             "type": "swap",
             "key": " 󰓡 SWAP     ",
-            "keyColor": "bright_green"
-        },
-        {
-            "type": "disk",
-            "key": " 󰋊 Disk (/) ",
-            "keyColor": "bright_blue",
-            "folders": "/"
+            "keyColor": "bright_green",
+            "format": "{percentage-bar} {percentage}"
         },
         {
             "type": "localip",

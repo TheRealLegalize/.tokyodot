@@ -3,6 +3,12 @@
 local termClass = "kitty"
 local username = os.getenv("USER") or os.getenv("USERNAME")
 
+local global = hl.window_rule({
+  match = {
+    class = "^(.*)"
+  },
+  no_shadow = true,
+})
 
 -- Thunar
 local confirmReplace = hl.window_rule({
@@ -30,12 +36,18 @@ local fileOperationProgress = hl.window_rule({
   size = {456, 102}
 })
 
-thunarTransparency = hl.window_rule({
+local thunarOpacity = hl.window_rule({
   match = {
-    class = "^([Tt]hunar)$",
-    title = "^(.* - [Tt]hunar)$"
+    class = "^([Tt]hunar)$"
   },
-  -- opacity = 0.93
+  opacity = 0.70
+})
+
+local xdgOpacity = hl.window_rule({
+  match = {
+    class = "^(xdg-desktop-portal-gtk)"
+  },
+  opacity = 0.70
 })
 
 local thunarBase = hl.window_rule({
@@ -46,7 +58,6 @@ local thunarBase = hl.window_rule({
   float = true,
   size = {1280, 720},
   center = true,
-  border_size = 2,
   xray = true,
   no_shadow = true
 })
@@ -87,7 +98,8 @@ local kittyDropdown = hl.window_rule({
   size = {"2048", "720"},
   move = {"256", "46"},
   animation = "slide top",
-  border_size = 0
+  border_size = 0,
+  no_shadow = false
 })
 
 -- MPV
@@ -129,10 +141,10 @@ local ffplayBase = hl.window_rule({
 local noctaliaSettings = hl.window_rule({
   match = {
     class = "^(dev.noctalia.Noctalia)$",
-    title = "^(Настройки Noctalia)$",
+    title = "^(Noctalia Settings)$",
   },
   float = true,
-  -- opacity = 0.9,
+  opacity = 0.7,
   center = true,
   size = {1280, 1100}
 })
@@ -174,13 +186,13 @@ local nwgLookBase = hl.window_rule({
 })
 
 -- Gimp
-local gimpFilePng = hl.window_rule({
+local gimpFile = hl.window_rule({
   match = {
-    class = "^(file-png)$"
+    class = "^(file-.*)$"
   },
   float = true,
   center = true,
-  size = {646, 526}
+  size = {1280, 720}
 })
 
 -- Calendar
@@ -254,52 +266,24 @@ local xdgDesktopPortalGtkBase = hl.window_rule({
   size = {720, 500}
 })
 
-local telegramSaveFile = hl.window_rule({
-  match = {
-    class = "^(Telegram)$",
-    title = "^(Save File)$"
-  },
-  center = true
-})
-
-telegramBase = hl.window_rule(({
+local telegramBase = hl.window_rule(({
   match = {
     class = "^(.*ayugram.*)$"
   },
-  -- float = false,
-  -- center = false,
-  -- size = {650, 1025},
- -- opacity = "0.8 0.7"
-}))
-
-local nyarchBase = hl.window_rule(({
-  match = {
-    class = "^(org.kde.dolphin)$"
-  },
   float = true,
   center = true,
-  size = {1280, 800},
---  opacity = "0.8 0.7"
+  size = {720, 1324},
+  opacity = "0.7"
 }))
+
 
 local portProtonBase = hl.window_rule({
   match = {
     class = "^(PortProton)$"
   },
   float = true,
-  suppress_event = "activateFocus",
   workspace = 6,
   center = false
-})
-
-local portProtonExe = hl.window_rule({
-  match = {
-    class = "^(.*.exe)$"
-  },
-  suppress_event = "activateFocus",
-  workspace = 6,
-  no_blur = true,
-  border_size = 0
 })
 
 local waydroidBase = hl.window_rule({
@@ -318,30 +302,14 @@ local timeshiftBase = hl.window_rule({
   max_size = {1280, 720}
 })
 
+local heliumUnmaximize = hl.window_rule({
+  match = {
+  class = "^(chrome-.*)$"
+  },
+  suppress_event = "maximize fullscreen fullscreenoutput"
+})
+
 -- ==================== LAYER RULES ====================
-
-local wofiLayer = hl.layer_rule({
-  match = {
-    namespace = "wofi"
-  },
-  blur = true,
-  xray = true
-})
-
-local waybarLayer = hl.layer_rule({
-  match = {
-    namespace = "waybar"
-  },
-  blur = true,
-  xray = true
-})
-
-local noctaliaLayer = hl.layer_rule({
-  match = {
-    namespace = "noctalia-shell:regionSelector"
-  },
-  no_anim = true,
-})
 
 local slurpLayer = hl.layer_rule({
   match = {
@@ -358,4 +326,3 @@ hl.workspace_rule({
     persistent = true
 })
 end
-waybarLayer:set_enabled(true)

@@ -1,0 +1,195 @@
+// void-spectra: цвета из Work/1/void-spectra.css, иконки Nerd Fonts v3.
+//   base #181818 / mantle #161616 / crust #2d2d2d
+//   surface-0 #2f2f2f / surface-1 #3b434d / surface-2 #4f565f
+//   text #c4e0ff / subtext-1 #9db3cc / subtext-0 #9aa5ce / overlay-1 #768699
+//   accent #eb8700 / border-active #eb8700 / border-inactive #2d2d2d
+//   red #eb0000 / green #00eb07 / yellow #eb8700 / blue #006ceb / purple #7900eb / cyan #00beeb
+// Раскладка: header (1 строка) -> вкладки (1 строка) -> содержимое вкладки.
+// Без рамок, без статус-бара. Иконки: шрифт терминала = Caskaydia Cove Nerd Font.
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    default_album_art_path: None,
+    format_tag_separator: " | ",
+    browser_column_widths: [20, 38, 42],
+    background_color: Some("#181818"),
+    text_color: Some("#c4e0ff"),
+    header_background_color: Some("#181818"),
+    modal_background_color: Some("#2f2f2f"),
+    modal_backdrop: false,
+    preview_label_style: (fg: "#eb8700"),
+    preview_metadata_group_style: (fg: "#eb8700", modifiers: "Bold"),
+    highlighted_item_style: (fg: "#eb8700", modifiers: "Bold"),
+    current_item_style: (fg: "#181818", bg: "#eb8700", modifiers: "Bold"),
+    borders_style: (fg: "#2d2d2d"),
+    highlight_border_style: (fg: "#eb8700"),
+    // без строки с подписями колонок
+    show_song_table_header: false,
+    symbols: (
+        //  nf-md-music_note   nf-fa-folder   nf-fa-list   nf-fa-circle
+        song: "\u{F001C}",
+        dir: "\u{F07B}",
+        playlist: "\u{F03A}",
+        marker: "\u{F111}",
+        ellipsis: "...",
+        song_style: (fg: "#eb8700"),
+        dir_style: (fg: "#006ceb"),
+        playlist_style: (fg: "#7900eb"),
+    ),
+    level_styles: (
+        info: (fg: "#006ceb", bg: "#181818"),
+        warn: (fg: "#eb8700", bg: "#181818"),
+        error: (fg: "#eb0000", bg: "#181818"),
+        debug: (fg: "#00beeb", bg: "#181818"),
+        trace: (fg: "#7900eb", bg: "#181818"),
+    ),
+    progress_bar: (
+        symbols: ["█", "█", "█", " ", "█"],
+        track_style: (fg: "#2d2d2d"),
+        elapsed_style: (fg: "#eb8700"),
+        thumb_style: (fg: "#eb8700"),
+        use_track_when_empty: true,
+    ),
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],
+        track_style: (),
+        ends_style: (fg: "#2d2d2d"),
+        thumb_style: (fg: "#4f565f"),
+    ),
+    tab_bar: (
+        enabled: true,
+        active_style: (fg: "#181818", bg: "#eb8700", modifiers: "Bold"),
+        inactive_style: (fg: "#768699"),
+    ),
+    lyrics: (
+        timestamp: false
+    ),
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track), style: (fg: "#768699")),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Artist)),
+                (kind: Text(" - "), style: (fg: "#768699")),
+                (kind: Property(Title), style: (fg: "#9db3cc")),
+            ]),
+            default: (kind: Property(Filename))
+        ),
+    ],
+    song_table_format: [
+        (
+            prop: (kind: Property(Title),
+                default: (kind: Text("Unknown"), style: (fg: "#768699"))
+            ),
+            label_prop: (kind: Text("Title")),
+            width: "60%",
+        ),
+        (
+            prop: (kind: Property(Artist), style: (fg: "#9db3cc"),
+                default: (kind: Text("Unknown"), style: (fg: "#768699"))
+            ),
+            label_prop: (kind: Text("Artist")),
+            width: "25%",
+        ),
+        (
+            prop: (kind: Property(Duration), style: (fg: "#768699"),
+                default: (kind: Text("-"), style: (fg: "#768699"))
+            ),
+            label_prop: (kind: Text("Duration")),
+            width: "15%",
+            alignment: Right,
+        ),
+    ],
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "1",
+                borders: "NONE",
+                pane: Component("header")
+            ),
+            (
+                size: "1",
+                borders: "NONE",
+                pane: Pane(Tabs)
+            ),
+            (
+                size: "100%",
+                borders: "NONE",
+                pane: Pane(TabContent)
+            ),
+        ],
+    ),
+    components: {
+        // одна строка: [state] [время] [название] [громкость]
+        "header": Split(
+            direction: Horizontal,
+            panes: [
+                (
+                    size: "2",
+                    borders: "NONE",
+                    pane: Component("state")
+                ),
+                (
+                    size: "12",
+                    borders: "NONE",
+                    pane: Component("elapsed")
+                ),
+                (
+                    size: "100%",
+                    borders: "NONE",
+                    pane: Component("title")
+                ),
+                (
+                    size: "14",
+                    borders: "NONE",
+                    pane: Component("volume")
+                ),
+            ]
+        ),
+        //  nf-fa-play / nf-fa-pause / nf-fa-stop -> зелёный/оранжевый/серый
+        "state": Pane(Property(
+            content: [
+                (kind: Transform(Replace(
+                    content: (kind: Property(Status(StateV2()))),
+                    replacements: [
+                        (match: "Playing", replace: (kind: Text("\u{F04B}"), style: (fg: "#00eb07"))),
+                        (match: "Paused", replace: (kind: Text("\u{F04C}"), style: (fg: "#eb8700"))),
+                        (match: "Stopped", replace: (kind: Text("\u{F04D}"), style: (fg: "#768699"))),
+                    ],
+                ))),
+            ], align: Left,
+        )),
+        //  nf-fa-clock_o + время/длительность
+        "elapsed": Pane(Property(
+            content: [
+                (kind: Text("\u{F017} "), style: (fg: "#768699")),
+                (kind: Property(Status(Elapsed)), style: (fg: "#c4e0ff")),
+                (kind: Text(" / "), style: (fg: "#768699")),
+                (kind: Property(Status(Duration)), style: (fg: "#768699")),
+            ],
+            align: Left,
+        )),
+        "title": Pane(Property(
+            content: [
+                (kind: Property(Song(Title)), style: (fg: "#c4e0ff", modifiers: "Bold"),
+                    default: (kind: Text("No Song"), style: (fg: "#768699"))),
+            ], align: Center, scroll_speed: 1
+        )),
+        //  nf-fa-volume_up + ползунок + %
+        "volume": Split(
+            direction: Horizontal,
+            panes: [
+                (size: "2", borders: "NONE", pane: Pane(Property(content: [(kind: Text("\u{F028}"), style: (fg: "#768699"))]))),
+                (size: "100%", borders: "NONE", pane: Pane(Volume(kind: Slider(symbols: (filled: "─", thumb: "●", track: "─"))))),
+                (size: "3", borders: "NONE", pane: Pane(Property(content: [(kind: Property(Status(Volume)), style: (fg: "#eb8700"))], align: Right))),
+                (size: "2", borders: "NONE", pane: Pane(Property(content: [(kind: Text("%"), style: (fg: "#eb8700"))]))),
+            ]
+        ),
+    },
+)

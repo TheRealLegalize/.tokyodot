@@ -3,7 +3,7 @@
 hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
-    hl.exec_cmd("LANG=ru_RU.UTF-8 noctalia --daemon")
+    hl.exec_cmd("noctalia --daemon")
     -- hl.exec_cmd("qs -c noctalia-shell")
     -- hl.exec_cmd("qs -c noctalia-shell & awww-daemon & hyprsunset & dunst & hypridle")
 --    hl.exec_cmd('sh "$HOME/.bin/lWpp"')
